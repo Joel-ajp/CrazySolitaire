@@ -237,6 +237,8 @@ public class TableauStack : IFindMoveableCards, IDropTarget, IDragFrom {
         c.PicBox.BringToFront();
         Panel.Refresh();
         c.PicBox.BringToFront();
+        Game.MoveCounter++;
+        System.Diagnostics.Debug.WriteLine($"Moves: {Game.MoveCounter}");
     }
 
     public void DragEnded() {
@@ -326,12 +328,15 @@ public class FoundationStack : IFindMoveableCards, IDropTarget, IDragFrom {
         return suitCheck && typeCheck;
     }
 
-    public void Dropped(Card c) {
+    public void Dropped(Card c)
+    {
         Cards.Push(c);
         FrmGame.Instance.RemCard(c);
         Panel.AddCard(c);
         c.AdjustLocation(0, 0);
         c.PicBox.BringToFront();
+        Game.MoveCounter++;
+        System.Diagnostics.Debug.WriteLine($"Moves: {Game.MoveCounter}");
     }
 
     public void DragEnded() {
@@ -356,8 +361,10 @@ public static class Game {
     public static TableauStack[] TableauStacks;
     public static Talon Talon { get; set; }
     public static int StockReloadCount { get; set; }
+    public static int MoveCounter { get; set; }
 
     static Game() {
+        MoveCounter = 0;
         StockReloadCount = 0;
     }
 
