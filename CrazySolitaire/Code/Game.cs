@@ -134,6 +134,15 @@ public class Card {
                     FrmGame.CardDraggedFrom.RemCard(this);
                     lastDropTarget.Dropped(this);
                     PicBox.BringToFront();
+
+                    if (FrmGame.CardDraggedFrom is TableauStack) {
+                        TableauStack fromStack = FrmGame.CardDraggedFrom as TableauStack;
+                        if (fromStack.Cards.Count > 0){
+                            var possiblyACard = fromStack.Cards.Last();
+                            if (possiblyACard is Card) { possiblyACard.FlipOver(); }
+                        }
+                    }
+
                 }
                 else {
                     FrmGame.Instance.RemCard(this);
