@@ -10,16 +10,19 @@ using System.Windows.Forms;
 
 namespace CrazySolitaire
 {
-    public partial class HighScore : Form
+    public partial class FrmHighScore : Form
     {
-        public HighScore()
+        public FrmHighScore()
         {
             InitializeComponent();
+            ScoreTextBox.Text = "67";
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            FrmTitle frmTitle = new();
+            frmTitle.Show();
+            Hide();
         }
     }
 }

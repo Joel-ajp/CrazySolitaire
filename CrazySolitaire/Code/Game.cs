@@ -11,10 +11,10 @@ public static class Game {
     public static int StockReloadCount { get; set; }
     public static int MoveCounter { get; set; }
     public static bool IsGameWon => FoundationStacks.Values.All(fs => fs.Cards.Count == 13);
+    
 
 
     static Game() {
-   
         MoveCounter = 0;
         StockReloadCount = 0;
     }

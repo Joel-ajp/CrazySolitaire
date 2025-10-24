@@ -69,10 +69,9 @@ namespace CrazySolitaire {
 
         public static void GameState() {             
             if (Game.IsGameWon) {
-                MessageBox.Show("congrats!", "you win:)", MessageBoxButtons.OK);
-                FrmTitle frmTitle = new();
-                frmTitle.Show();
-                Instance.Hide();
+               FrmHighScore frmHighScore = new();
+               frmHighScore.Show();
+               Instance.Hide();
             }
         }
 
