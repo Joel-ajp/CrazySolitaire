@@ -52,6 +52,7 @@ public class FoundationStack : IFindMoveableCards, IDropTarget, IDragFrom {
         c.PicBox.BringToFront();
         Game.MoveCounter++;
         System.Diagnostics.Debug.WriteLine($"Moves: {Game.MoveCounter}");
+        FrmGame.GameState();
     }
 
     public void DragEnded() {

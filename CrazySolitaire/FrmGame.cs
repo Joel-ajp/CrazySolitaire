@@ -67,6 +67,15 @@ namespace CrazySolitaire {
             }
         }
 
+        public static void GameState() {             
+            if (Game.IsGameWon) {
+                MessageBox.Show("congrats!", "you win:)", MessageBoxButtons.OK);
+                FrmTitle frmTitle = new();
+                frmTitle.Show();
+                Instance.Hide();
+            }
+        }
+
         public static void DragCard(Card c) {
             CurDragCard = c;
             CardDraggedFrom = Game.FindDragFrom(c);
