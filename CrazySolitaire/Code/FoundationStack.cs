@@ -4,6 +4,7 @@ public class FoundationStack : IFindMoveableCards, IDropTarget, IDragFrom {
     public Panel Panel { get; private set; }
     public Stack<Card> Cards { get; private set; }
     public Suit Suit { get; private init; }
+    private CardType highestCard;
 
     public FoundationStack(Panel panel, Suit suit) {
         Panel = panel;
