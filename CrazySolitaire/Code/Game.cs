@@ -10,10 +10,12 @@ public static class Game {
     public static Talon Talon { get; set; }
     public static int StockReloadCount { get; set; }
     public static int MoveCounter { get; set; }
+    public static bool SuppressMoveCounting { get; set; }
 
     static Game() {
         MoveCounter = 0;
         StockReloadCount = 0;
+        SuppressMoveCounting = false;
     }
 
     public static void Init(Panel panTalon, Panel[] panTableauStacks, Dictionary<Suit, Panel> panFoundationStacks) {
