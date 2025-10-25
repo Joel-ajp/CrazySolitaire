@@ -2,20 +2,38 @@
 
 namespace CrazySolitaire;
 
+// This class represents a single card
 public class Card {
+    // The Value of the card, K-A
     public CardType Type { get; private set; }
+    // The suit of the card. With the numerical representation
+    // of the enum, even numbers are red, Odd numbers are black
     public Suit Suit { get; private set; }
+    // true means that the face of the card is showing, false means
+    // the back of the card is showing
     public bool FaceUp { get; private set; }
+    // the control on the form that is the card
     public PictureBox PicBox { get; private set; }
+    // The image to be displayed on the card, automatically figures out
+    // which file to use based on other fields, FaceUp, Type, and Suit
     public Bitmap PicImg {
         get => FaceUp ? Resources.ResourceManager.GetObject($"{Type.ToString().Replace("_", "").ToLower()}_of_{Suit.ToString().ToLower()}") as Bitmap
                       : Resources.back_green;
     }
+    // the XY coordinate of where the card should be on be on screen at
+    // any given frame while being dragged
     private Point dragOffset;
+    // the XY coordinate of where the card was on screen prior to being
+    // draged relative to the container it was in
     private Point relLocBeforeDrag;
+    // the container the card was in prior to being dragged
     private Control conBeforeDrag;
+    // the container that was last hovered over while dragging the card
+    // which the player would be trying to drop the card on if they
+    // release the mouse button during this frame
     private IDropTarget lastDropTarget;
 
+    // simple constructor
     public Card(CardType type, Suit suit) {
         Type = type;
         Suit = suit;
@@ -23,7 +41,12 @@ public class Card {
         SetupPicBox();
     }
 
+    // This method is called by the constructor. It sets
+    // up the visuals of the card and also contains
+    // event handlers for when the card is clicked and
+    // dragged around
     private void SetupPicBox() {
+        // sets up fhe card's visual settings
         PicBox = new() {
             Width = 90,
             Height = 126,
@@ -31,11 +54,13 @@ public class Card {
             BorderStyle = BorderStyle.FixedSingle,
             BackgroundImage = PicImg
         };
+        // flips over the card when clicked
         PicBox.Click += (sender, e) => {
             if (!FaceUp && Game.CanFlipOver(this)) {
                 FlipOver();
             }
         };
+        // handles the card being dragged around
         PicBox.MouseDown += (sender, e) => {
             if (e.Button == MouseButtons.Left && Game.IsCardMovable(this)) {
                 // Determine if this is part of a tableau run drag
@@ -71,6 +96,7 @@ public class Card {
                 dragOffset = e.Location;
             }
         };
+        // handles dropping a card that has been dragged
         PicBox.MouseUp += (sender, e) => {
             if (FrmGame.IsDraggingCard(this) || (FrmGame.CurDragRun.Count > 0 && FrmGame.CurDragRun[0] == this)) {
                 FrmGame.StopDragCard(this);
@@ -89,7 +115,7 @@ public class Card {
                         if (FrmGame.CardDraggedFrom is TableauStack fromStack) {
                             if (fromStack.Cards.Count > 0) {
                                 var possiblyACard = fromStack.Cards.Last();
-                                if (possiblyACard is Card) { possiblyACard.FlipOver(); }
+                                if (possiblyACard is Card && possiblyACard.FaceUp == false) { possiblyACard.FlipOver(); }
                             }
                             // Ensure ordering is consistent
                             fromStack.RebuildLayout();
@@ -107,10 +133,11 @@ public class Card {
                         lastDropTarget.Dropped(this);
                         PicBox.BringToFront();
 
+                        // Flip next card in from-stack if any
                         if (fromBefore is TableauStack fromStack2) {
                             if (fromStack2.Cards.Count > 0){
                                 var possiblyACard = fromStack2.Cards.Last();
-                                if (possiblyACard is Card) { possiblyACard.FlipOver(); }
+                                if (possiblyACard is Card && possiblyACard.FaceUp == false) { possiblyACard.FlipOver(); }
                             }
                             fromStack2.RebuildLayout();
                         }
@@ -130,6 +157,8 @@ public class Card {
                 }
             }
         };
+        // handle making the card or run of cards follow the mouse around during
+        // dragging, and also keep lastDropTarget up to date
         PicBox.MouseMove += (sender, e) => {
             if (FrmGame.CurDragRun.Count > 0 && FrmGame.CurDragRun[0] == this) {
                 var dragged = (Control)sender;
@@ -197,11 +226,16 @@ public class Card {
         };
     }
 
+    // a helper function to flip over the card by
+    // toggling FaceUp and updating the background
+    // image to match the new PicImg
     public void FlipOver() {
         FaceUp = !FaceUp;
         PicBox.BackgroundImage = PicImg;
     }
 
+    // a helper function to adjust the location of a
+    // card by a given amount
     public void AdjustLocation(int left, int top) {
         PicBox.Left = left;
         PicBox.Top = top;
