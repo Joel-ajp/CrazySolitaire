@@ -55,11 +55,11 @@ public class FoundationStack : IFindMoveableCards, IDropTarget, IDragFrom {
         if (c.Type > highestCard) {
             Game.Coins++;
             highestCard = c.Type;
-            System.Diagnostics.Debug.WriteLine($"Coins: {Game.Coins}");
+            System.Diagnostics.Trace.WriteLine($"Coins: {Game.Coins}");
         }
 
         Game.MoveCounter++;
-        System.Diagnostics.Debug.WriteLine($"Moves: {Game.MoveCounter}");
+        System.Diagnostics.Trace.WriteLine($"Moves: {Game.MoveCounter}");
     }
 
     public void DragEnded() {
