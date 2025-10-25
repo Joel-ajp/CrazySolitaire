@@ -24,10 +24,12 @@ public static class Game {
             CoinsChanged?.Invoke(_coins);
         }
     }
+    public static bool SuppressMoveCounting { get; set; }
 
     static Game() {
         MoveCounter = 0;
         StockReloadCount = 0;
+        SuppressMoveCounting = false;
     }
 
     public static void Init(Panel panTalon, Panel[] panTableauStacks, Dictionary<Suit, Panel> panFoundationStacks) {
