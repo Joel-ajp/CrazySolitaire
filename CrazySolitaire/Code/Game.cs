@@ -10,6 +10,7 @@ public static class Game {
     public static Talon Talon { get; set; }
     public static int StockReloadCount { get; set; }
     public static int MoveCounter { get; set; }
+    public static int Coins { get; set; }
 
     static Game() {
         MoveCounter = 0;

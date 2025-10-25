@@ -4,7 +4,7 @@ public class FoundationStack : IFindMoveableCards, IDropTarget, IDragFrom {
     public Panel Panel { get; private set; }
     public Stack<Card> Cards { get; private set; }
     public Suit Suit { get; private init; }
-    private CardType highestCard;
+    private CardType highestCard = CardType.ACE - 1;
 
     public FoundationStack(Panel panel, Suit suit) {
         Panel = panel;
@@ -51,6 +51,13 @@ public class FoundationStack : IFindMoveableCards, IDropTarget, IDragFrom {
         Panel.AddCard(c);
         c.AdjustLocation(0, 0);
         c.PicBox.BringToFront();
+
+        if (c.Type > highestCard) {
+            Game.Coins++;
+            highestCard = c.Type;
+            System.Diagnostics.Debug.WriteLine($"Coins: {Game.Coins}");
+        }
+
         Game.MoveCounter++;
         System.Diagnostics.Debug.WriteLine($"Moves: {Game.MoveCounter}");
     }
