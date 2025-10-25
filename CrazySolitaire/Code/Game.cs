@@ -10,6 +10,20 @@ public static class Game {
     public static Talon Talon { get; set; }
     public static int StockReloadCount { get; set; }
     public static int MoveCounter { get; set; }
+    // Raised whenever Coins changes
+    public static event Action<int> CoinsChanged;
+
+    private static int _coins;
+    public static int Coins
+    {
+        get => _coins;
+        set
+        {
+            if (_coins == value) return;
+            _coins = value;
+            CoinsChanged?.Invoke(_coins);
+        }
+    }
     public static bool SuppressMoveCounting { get; set; }
 
     static Game() {
