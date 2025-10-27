@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CrazySolitaire
+﻿namespace CrazySolitaire
 {
+    // an enum for the suits. In terms of the numerical values,
+    // even values are red, odd values are black
     public enum Suit
     {
         DIAMONDS,

@@ -26,7 +26,8 @@
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             pbStock = new PictureBox();
             panTalon = new Panel();
             panFoundationStack_Clubs = new Panel();
@@ -40,7 +41,10 @@
             panTableauStack_4 = new Panel();
             panTableauStack_5 = new Panel();
             panTableauStack_6 = new Panel();
+            picBox_coin = new PictureBox();
+            lblCoinCount = new Label();
             ((System.ComponentModel.ISupportInitialize)pbStock).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picBox_coin).BeginInit();
             SuspendLayout();
             // 
             // pbStock
@@ -153,12 +157,34 @@
             panTableauStack_6.Size = new Size(101, 306);
             panTableauStack_6.TabIndex = 5;
             // 
+            // picBox_coin
+            // 
+            picBox_coin.BackgroundImage = Properties.Resources.coin;
+            picBox_coin.BackgroundImageLayout = ImageLayout.Stretch;
+            picBox_coin.Location = new Point(761, 611);
+            picBox_coin.Name = "picBox_coin";
+            picBox_coin.Size = new Size(40, 40);
+            picBox_coin.TabIndex = 6;
+            picBox_coin.TabStop = false;
+            // 
+            // lblCoinCount
+            // 
+            lblCoinCount.AutoSize = true;
+            lblCoinCount.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold);
+            lblCoinCount.Location = new Point(807, 611);
+            lblCoinCount.Name = "lblCoinCount";
+            lblCoinCount.Size = new Size(107, 40);
+            lblCoinCount.TabIndex = 7;
+            lblCoinCount.Text = "Label1";
+            // 
             // FrmGame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 64, 0);
             ClientSize = new Size(976, 674);
+            Controls.Add(lblCoinCount);
+            Controls.Add(picBox_coin);
             Controls.Add(panTableauStack_6);
             Controls.Add(panTableauStack_5);
             Controls.Add(panTableauStack_4);
@@ -172,13 +198,16 @@
             Controls.Add(panFoundationStack_Clubs);
             Controls.Add(panTalon);
             Controls.Add(pbStock);
+            ForeColor = SystemColors.ButtonHighlight;
             Name = "FrmGame";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Crazy Solitaire";
             FormClosing += FrmGame_FormClosing;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pbStock).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picBox_coin).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -196,5 +225,7 @@
         private Panel panTableauStack_4;
         private Panel panTableauStack_5;
         private Panel panTableauStack_6;
+        private PictureBox picBox_coin;
+        private Label lblCoinCount;
     }
 }
