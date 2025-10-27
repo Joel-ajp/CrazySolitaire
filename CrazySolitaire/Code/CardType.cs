@@ -1,5 +1,6 @@
 ﻿namespace CrazySolitaire
 {
+    // the value of the card
     public enum CardType
     {
         ACE,

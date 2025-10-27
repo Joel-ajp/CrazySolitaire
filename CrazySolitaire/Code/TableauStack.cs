@@ -1,20 +1,28 @@
 ﻿namespace CrazySolitaire;
 
+// this class represents the tableu stacks, those stacks of cards in
+// the bottom/middle of the screen in which the majority of the gameplay
+// occurs
 public class TableauStack : IFindMoveableCards, IDropTarget, IDragFrom {
+    // this is the control in the form which visibly contains the stack on screen
     public Panel Panel { get; set; }
+    // this is where the cards are actually stored
     public LinkedList<Card> Cards { get; private set; }
 
+    // a simple constructor
     public TableauStack(Panel panel) {
         Panel = panel;
         Cards = new();
     }
 
+    // a helper function to add a new card to the end of the list
     public void AddCard(Card c) {
         Cards.AddLast(c);
         Panel.AddCard(c);
         c.PicBox.BringToFront();
     }
 
+    // a helper function that returns a list of cards that are movable
     public List<Card> FindMoveableCards() {
         // A card is movable if it belongs to the longest valid run (face-up, alternating colors, descending by 1)
         // ending at the bottom of this tableau stack. Any card within that run can be the start of a drag.
@@ -39,6 +47,8 @@ public class TableauStack : IFindMoveableCards, IDropTarget, IDragFrom {
         return movable; // order does not matter for membership checks
     }
 
+    // highlights the stack the correct color when a card is draged over it
+    // depending on whether the card can be dropped there
     public void DragOver(Card c) {
         if (CanDrop(c)) {
             Panel.BackColor = Color.Green;
@@ -48,6 +58,7 @@ public class TableauStack : IFindMoveableCards, IDropTarget, IDragFrom {
         }
     }
 
+    // determine if a given card is able to be dropped in this stack
     public bool CanDrop(Card c) {
         if (Cards.Count == 0) {
             return c.Type == CardType.KING;
@@ -60,28 +71,36 @@ public class TableauStack : IFindMoveableCards, IDropTarget, IDragFrom {
         }
     }
 
+    // the logic to actually drop a given card into this stack
     public void Dropped(Card c) {
+        // add the card to this stack
         Cards.AddLast(c);
         FrmGame.Instance.RemCard(c);
         Panel.AddCard(c);
+        // adjust it's location accordingly
         c.AdjustLocation(0, (Cards.Count - 1) * 20);
         c.PicBox.BringToFront();
         Panel.Refresh();
         c.PicBox.BringToFront();
+        // increment the count of how many moves the player has made
         if (!Game.SuppressMoveCounting) {
             Game.MoveCounter++;
             System.Diagnostics.Debug.WriteLine($"Moves: {Game.MoveCounter}");
         }
     }
 
+    // a helper function to un-highlight the stack when the
+    // card that was dragged over it is no longer being dragged
     public void DragEnded() {
         Panel.BackColor = Color.Transparent;
     }
 
+    // a helper function to get the card at the bottom of the stack
     public Card GetBottomCard() {
         return Cards.Count > 0 ? Cards.Last.Value : null;
     }
 
+    // a helper function to remove a card from the stack
     public void RemCard(Card card) {
         Cards.Remove(card);
     }

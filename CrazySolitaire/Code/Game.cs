@@ -3,17 +3,29 @@
 namespace CrazySolitaire;
 
 public static class Game {
+    // the title screen
     public static Form TitleForm { get; set; }
+    // an instance of the deck of cards
     public static Deck Deck { get; private set; }
+    //one foundation stack for each suit, referenced by the suit it's for
     public static Dictionary<Suit, FoundationStack> FoundationStacks { get; set; }
+    // a list of instances of tableu stacks
     public static TableauStack[] TableauStacks;
+    // an instance of the Talon
     public static Talon Talon { get; set; }
+    // an integer keeping track of how many times the stock has been reloaded,
+    // for explosion purposes
     public static int StockReloadCount { get; set; }
+    // an integer keeping track of the number of moves the player has made, for
+    // scorekeeping purposes
     public static int MoveCounter { get; set; }
     // Raised whenever Coins changes
     public static event Action<int> CoinsChanged;
 
+    // the count of how many coins the player has earned
     private static int _coins;
+    // the getter and setter for the coins, which invokes
+    // the CoinsChanged flag upon set
     public static int Coins
     {
         get => _coins;
@@ -24,14 +36,20 @@ public static class Game {
             CoinsChanged?.Invoke(_coins);
         }
     }
+    // a boolean keeping track of whether or not the program should
+    // be temporarily supressing move counting
     public static bool SuppressMoveCounting { get; set; }
 
+    // a simple constructor, setting both MoveCounter and StockReloadCount
+    // to zero, and setting SuppressMoveCounting to false
     static Game() {
         MoveCounter = 0;
         StockReloadCount = 0;
         SuppressMoveCounting = false;
     }
 
+    // a helper method to initialize and populate all of the different objects
+    // and collections of objects that make up the game
     public static void Init(Panel panTalon, Panel[] panTableauStacks, Dictionary<Suit, Panel> panFoundationStacks) {
         Deck = new();
 
@@ -65,7 +83,8 @@ public static class Game {
             TableauStacks[i].AddCard(c);
         }
     }
-
+    
+    // a helper function to check if a given card can be moved
     public static bool IsCardMovable(Card c) {
         bool isMovable = false;
         isMovable |= Talon.FindMoveableCards().Contains(c);
@@ -78,6 +97,8 @@ public static class Game {
         return isMovable;
     }
 
+    // a helper function to find the container a given card the player is
+    // currently dragging was in prior to being dragged
     public static IDragFrom FindDragFrom(Card c) {
         if (Talon.Cards.Contains(c)) {
             return Talon;
@@ -95,6 +116,10 @@ public static class Game {
         return null;
     }
 
+    // a helper function to find which foundation stack or
+    // tableu stack a given drop target is. This is important
+    // because the drop target will be the control associated
+    // with the object, and we need to get the object itself.
     public static IDropTarget FindDropTarget(Control c) {
         foreach (var foundationStack in FoundationStacks) {
             if (foundationStack.Value.Panel == c) {
@@ -109,6 +134,9 @@ public static class Game {
         return null;
     }
 
+    // a helper function to tell all potential drop locations
+    // that a drag has ended. This will cause them to reset
+    // any highlighting that they currently have.
     public static void CallDragEndedOnAll() {
         foreach (var foundationStack in FoundationStacks) {
             foundationStack.Value.DragEnded();
@@ -118,6 +146,12 @@ public static class Game {
         }
     }
 
+    // a helper function to determine if a given card is at the bottom
+    // of a tableu stack for the purposes of verifying if it can be flipped
+    // over. This is only used with manually flipping the cards over by
+    // clicking them, which is functionality that, while still implemented
+    // in the code, will never be used if something goes wrong with the
+    // auto-flipping script. This function is thus, mostly obselete
     public static bool CanFlipOver(Card c) {
         foreach (var tableauStack in TableauStacks) {
             if (tableauStack.GetBottomCard() == c) {
@@ -127,7 +161,10 @@ public static class Game {
         return false;
     }
 
+    // this is the logic for causing all the cards to explode
     public static void Explode() {
+        // first, collect all the cards in play into one list,
+        // no matter where on the screen they are
         List<Card> allCardsInPlay = new();
         foreach (var foundationStack in FoundationStacks) {
             allCardsInPlay.AddRange(foundationStack.Value.Cards);
@@ -145,8 +182,11 @@ public static class Game {
             c.AdjustLocation(origPos.X, origPos.Y);
             c.PicBox.BringToFront();
         }
+        // set the speed constants to move the cards at
         const int SPEED = 6;
         const int MORE_SPEED = 10;
+        // create an array of possible directions and
+        // speeds for the cards to get sent in
         Point[] possibleExplodeVectors = [
             new(0, SPEED),
             new(0, -SPEED),
@@ -170,11 +210,15 @@ public static class Game {
             new(MORE_SPEED, -SPEED),
             new(-MORE_SPEED, -SPEED),
         ];
+        // instantiate and allocate an array of the directions and
+        // speeds to be used for each card, with one element per card
         Point[] explodeVectors = new Point[allCardsInPlay.Count];
+        // populate explodeVectors with random values from possibleExplodeVectors
         Random rand = new();
         for (int i = 0; i < explodeVectors.Length; i++) {
             explodeVectors[i] = possibleExplodeVectors[rand.Next(possibleExplodeVectors.Length)];
         }
+        // send each card flying in it's assigned direction at staggered times
         Timer tmr = new() { Interval = 25 };
         tmr.Tick += (sender, e) => {
             for (int i = 0; i < allCardsInPlay.Count; i++) {
