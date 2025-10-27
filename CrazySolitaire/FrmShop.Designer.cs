@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             btnStartGame = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // btnStartGame
             // 
             btnStartGame.AutoSize = true;
             btnStartGame.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnStartGame.Location = new Point(12, 13);
+            btnStartGame.Location = new Point(46, 40);
             btnStartGame.Margin = new Padding(3, 4, 3, 4);
             btnStartGame.Name = "btnStartGame";
             btnStartGame.Size = new Size(84, 67);
@@ -44,11 +45,23 @@
             btnStartGame.UseVisualStyleBackColor = true;
             btnStartGame.Click += btnBackToStart_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Broadway", 36F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.Location = new Point(333, 39);
+            label1.Name = "label1";
+            label1.Size = new Size(721, 68);
+            label1.TabIndex = 2;
+            label1.Text = "Welcome to the Shop!";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // FrmShop
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1115, 899);
+            Controls.Add(label1);
             Controls.Add(btnStartGame);
             Name = "FrmShop";
             StartPosition = FormStartPosition.CenterScreen;
@@ -60,5 +73,6 @@
         #endregion
 
         private Button btnStartGame;
+        private Label label1;
     }
 }
