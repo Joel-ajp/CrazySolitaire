@@ -19,6 +19,9 @@ public static class Game {
     // an integer keeping track of the number of moves the player has made, for
     // scorekeeping purposes
     public static int MoveCounter { get; set; }
+    public static bool IsGameWon => FoundationStacks.Values.All(fs => fs.Cards.Count == 13);
+    
+
     // Raised whenever Coins changes
     public static event Action<int> CoinsChanged;
 

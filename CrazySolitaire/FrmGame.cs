@@ -89,8 +89,15 @@ namespace CrazySolitaire {
             }
         }
 
-        public static void DragCard(Card c)
-        {
+        public static void GameState() {             
+            if (Game.IsGameWon) {
+               FrmHighScore frmHighScore = new();
+               frmHighScore.Show();
+               Instance.Hide();
+            }
+        }
+
+        public static void DragCard(Card c) {
             CurDragCard = c;
             CardDraggedFrom = Game.FindDragFrom(c);
         }

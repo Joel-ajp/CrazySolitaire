@@ -73,7 +73,8 @@ public class FoundationStack : IFindMoveableCards, IDropTarget, IDragFrom {
 
         // increment how many moves the player has made
         Game.MoveCounter++;
-        System.Diagnostics.Trace.WriteLine($"Moves: {Game.MoveCounter}");
+        System.Diagnostics.Debug.WriteLine($"Moves: {Game.MoveCounter}");
+        FrmGame.GameState();
     }
 
     // helper function to un-highlight the stack when the card that was dragged
