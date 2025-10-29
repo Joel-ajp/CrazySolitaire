@@ -104,7 +104,16 @@
             bulbTimer = new System.Windows.Forms.Timer(components);
             lblCoinCount = new Label();
             picBox_coin = new PictureBox();
+            PnlReverseCard = new Panel();
+            lblReverseCard = new Label();
+            underline = new Panel();
+            ReverseCoinIcon = new PictureBox();
+            lblReverseCost = new Label();
+            lblReverseDescription = new Label();
+            PnlReversePurchaseBx = new Panel();
             ((System.ComponentModel.ISupportInitialize)picBox_coin).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ReverseCoinIcon).BeginInit();
+            PnlReversePurchaseBx.SuspendLayout();
             SuspendLayout();
             // 
             // btnStartGame
@@ -860,12 +869,88 @@
             picBox_coin.TabIndex = 71;
             picBox_coin.TabStop = false;
             // 
+            // PnlReverseCard
+            // 
+            PnlReverseCard.Location = new Point(3, 3);
+            PnlReverseCard.Name = "PnlReverseCard";
+            PnlReverseCard.Size = new Size(106, 162);
+            PnlReverseCard.TabIndex = 73;
+            // 
+            // lblReverseCard
+            // 
+            lblReverseCard.AutoSize = true;
+            lblReverseCard.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblReverseCard.ForeColor = Color.White;
+            lblReverseCard.Location = new Point(107, 0);
+            lblReverseCard.Name = "lblReverseCard";
+            lblReverseCard.Size = new Size(357, 54);
+            lblReverseCard.TabIndex = 74;
+            lblReverseCard.Text = "Uno Reverse Card";
+            // 
+            // underline
+            // 
+            underline.BackColor = Color.White;
+            underline.Location = new Point(316, 142);
+            underline.Name = "underline";
+            underline.Size = new Size(721, 5);
+            underline.TabIndex = 75;
+            // 
+            // ReverseCoinIcon
+            // 
+            ReverseCoinIcon.BackgroundImage = Properties.Resources.coin;
+            ReverseCoinIcon.BackgroundImageLayout = ImageLayout.Stretch;
+            ReverseCoinIcon.Location = new Point(116, 58);
+            ReverseCoinIcon.Margin = new Padding(3, 4, 3, 4);
+            ReverseCoinIcon.Name = "ReverseCoinIcon";
+            ReverseCoinIcon.Size = new Size(40, 45);
+            ReverseCoinIcon.TabIndex = 76;
+            ReverseCoinIcon.TabStop = false;
+            // 
+            // lblReverseCost
+            // 
+            lblReverseCost.AutoSize = true;
+            lblReverseCost.BackColor = Color.Transparent;
+            lblReverseCost.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblReverseCost.ForeColor = Color.White;
+            lblReverseCost.Location = new Point(149, 44);
+            lblReverseCost.Name = "lblReverseCost";
+            lblReverseCost.Size = new Size(75, 60);
+            lblReverseCost.TabIndex = 77;
+            lblReverseCost.Text = "23";
+            lblReverseCost.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblReverseDescription
+            // 
+            lblReverseDescription.AutoSize = true;
+            lblReverseDescription.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblReverseDescription.ForeColor = Color.White;
+            lblReverseDescription.Location = new Point(111, 104);
+            lblReverseDescription.Name = "lblReverseDescription";
+            lblReverseDescription.Size = new Size(764, 41);
+            lblReverseDescription.TabIndex = 78;
+            lblReverseDescription.Text = "Toggles between acending and decending card order";
+            // 
+            // PnlReversePurchaseBx
+            // 
+            PnlReversePurchaseBx.Controls.Add(lblReverseCard);
+            PnlReversePurchaseBx.Controls.Add(lblReverseDescription);
+            PnlReversePurchaseBx.Controls.Add(PnlReverseCard);
+            PnlReversePurchaseBx.Controls.Add(ReverseCoinIcon);
+            PnlReversePurchaseBx.Controls.Add(lblReverseCost);
+            PnlReversePurchaseBx.Location = new Point(85, 159);
+            PnlReversePurchaseBx.Name = "PnlReversePurchaseBx";
+            PnlReversePurchaseBx.Size = new Size(952, 169);
+            PnlReversePurchaseBx.TabIndex = 79;
+            PnlReversePurchaseBx.Click += ReversePurchase_Click;
+            // 
             // FrmShop
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 0, 0);
             ClientSize = new Size(1115, 899);
+            Controls.Add(PnlReversePurchaseBx);
+            Controls.Add(underline);
             Controls.Add(lblCoinCount);
             Controls.Add(picBox_coin);
             Controls.Add(bulb16t);
@@ -945,6 +1030,9 @@
             Text = "FrmShop";
             Load += FrmShop_Load;
             ((System.ComponentModel.ISupportInitialize)picBox_coin).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ReverseCoinIcon).EndInit();
+            PnlReversePurchaseBx.ResumeLayout(false);
+            PnlReversePurchaseBx.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1026,5 +1114,12 @@
         private System.Windows.Forms.Timer bulbTimer;
         private Label lblCoinCount;
         private PictureBox picBox_coin;
+        private Panel PnlReverseCard;
+        private Label lblReverseCard;
+        private Panel underline;
+        private PictureBox ReverseCoinIcon;
+        private Label lblReverseCost;
+        private Label lblReverseDescription;
+        private Panel PnlReversePurchaseBx;
     }
 }

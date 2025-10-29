@@ -138,5 +138,10 @@ namespace CrazySolitaire.Code
                 }
             }
         }
+
+        private void ReversePurchase_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
