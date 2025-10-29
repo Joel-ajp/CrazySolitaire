@@ -25,18 +25,17 @@ public static class Game {
     // Raised whenever Coins changes
     public static event Action<int> CoinsChanged;
 
-    // the count of how many coins the player has earned
-    private static int _coins;
     // the getter and setter for the coins, which invokes
     // the CoinsChanged flag upon set
     public static int Coins
     {
-        get => _coins;
+        get => Properties.Settings.Default.Coins;
         set
         {
-            if (_coins == value) return;
-            _coins = value;
-            CoinsChanged?.Invoke(_coins);
+            if (Properties.Settings.Default.Coins == value) return;
+            Properties.Settings.Default.Coins = value;
+            Properties.Settings.Default.Save();
+            CoinsChanged?.Invoke(value);
         }
     }
     // a boolean keeping track of whether or not the program should
