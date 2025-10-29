@@ -107,25 +107,31 @@ namespace CrazySolitaire.Code
 
         private void FrmShop_Load(object sender, EventArgs e)
         {
-
+            lblCoinCount.Text = $"Coins:{Game.Coins}";
         }
 
         // this fires every time bulbTimer fires
         private void changeLights(object sender, EventArgs e)
         {
             // loop through the light bulbs
-            for(int i = 0; i < bulbs.Length; i++){
+            for (int i = 0; i < bulbs.Length; i++)
+            {
                 // if the lightbulb before it is on
-                if ((i == bulbs.Length - 1 && bulbs[0].BackgroundImage == Resources.lightBulbOn) || (i != bulbs.Length - 1 && bulbs[i + 1].BackgroundImage == Resources.lightBulbOn)){
+                if ((i == bulbs.Length - 1 && bulbs[0].BackgroundImage == Resources.lightBulbOn) || (i != bulbs.Length - 1 && bulbs[i + 1].BackgroundImage == Resources.lightBulbOn))
+                {
                     // check if the lightbulb is off
-                    if (bulbs[i].BackgroundImage == Resources.lightBulbOff) {
+                    if (bulbs[i].BackgroundImage == Resources.lightBulbOff)
+                    {
                         // turn on the bulb
                         bulbs[i].BackgroundImage = Resources.lightBulbOn;
                     }
-                // if the one before it is off
-                }else{
+                    // if the one before it is off
+                }
+                else
+                {
                     // check if the lightbulb is on
-                    if (bulbs[i].BackgroundImage == Resources.lightBulbOn) {
+                    if (bulbs[i].BackgroundImage == Resources.lightBulbOn)
+                    {
                         // turn off the bulb
                         bulbs[i].BackgroundImage = Resources.lightBulbOff;
                     }

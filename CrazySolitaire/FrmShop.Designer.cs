@@ -102,6 +102,9 @@
             bulb16b = new Panel();
             bulb16c = new Panel();
             bulbTimer = new System.Windows.Forms.Timer(components);
+            lblCoinCount = new Label();
+            picBox_coin = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)picBox_coin).BeginInit();
             SuspendLayout();
             // 
             // btnStartGame
@@ -835,12 +838,36 @@
             bulbTimer.Enabled = true;
             bulbTimer.Tick += changeLights;
             // 
+            // lblCoinCount
+            // 
+            lblCoinCount.AutoSize = true;
+            lblCoinCount.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold);
+            lblCoinCount.ForeColor = Color.White;
+            lblCoinCount.Location = new Point(910, 769);
+            lblCoinCount.Name = "lblCoinCount";
+            lblCoinCount.Size = new Size(136, 50);
+            lblCoinCount.TabIndex = 72;
+            lblCoinCount.Text = "Label1";
+            // 
+            // picBox_coin
+            // 
+            picBox_coin.BackgroundImage = Properties.Resources.coin;
+            picBox_coin.BackgroundImageLayout = ImageLayout.Stretch;
+            picBox_coin.Location = new Point(858, 769);
+            picBox_coin.Margin = new Padding(3, 4, 3, 4);
+            picBox_coin.Name = "picBox_coin";
+            picBox_coin.Size = new Size(46, 53);
+            picBox_coin.TabIndex = 71;
+            picBox_coin.TabStop = false;
+            // 
             // FrmShop
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 0, 0);
             ClientSize = new Size(1115, 899);
+            Controls.Add(lblCoinCount);
+            Controls.Add(picBox_coin);
             Controls.Add(bulb16t);
             Controls.Add(bulb16s);
             Controls.Add(bulb16q);
@@ -917,6 +944,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmShop";
             Load += FrmShop_Load;
+            ((System.ComponentModel.ISupportInitialize)picBox_coin).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -996,5 +1024,7 @@
         private Panel bulb16b;
         private Panel bulb16c;
         private System.Windows.Forms.Timer bulbTimer;
+        private Label lblCoinCount;
+        private PictureBox picBox_coin;
     }
 }
