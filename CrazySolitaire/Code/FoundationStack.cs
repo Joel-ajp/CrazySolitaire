@@ -85,9 +85,19 @@ public class FoundationStack : IFindMoveableCards, IDropTarget, IDragFrom {
 
     // remove a card from the stack
     public void RemCard(Card card) {
-        List<Card> cards = Cards.ToList<Card>();
-        cards.Remove(card);
-        Cards = new Stack<Card>(cards);
+
+        if (Cards.Count == 0) return;
+
+    var temp = new Stack<Card>();
+        while (Cards.Count > 0) {
+            var top = Cards.Pop();
+            if (top == card) { break; }
+            temp.Push(top);
+        }
+
+        while (temp.Count > 0) {
+            Cards.Push(temp.Pop());
+        }
     }
 
     // add a card to the stack. This exists to properly implement the interface that
