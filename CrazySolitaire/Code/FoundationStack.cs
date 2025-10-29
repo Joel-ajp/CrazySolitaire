@@ -85,20 +85,6 @@ public class FoundationStack : IFindMoveableCards, IDropTarget, IDragFrom {
 
     // remove a card from the stack
     public void RemCard(Card card) {
-<<<<<<< Updated upstream
-
-        if (Cards.Count == 0) return;
-
-    var temp = new Stack<Card>();
-        while (Cards.Count > 0) {
-            var top = Cards.Pop();
-            if (top == card) { break; }
-            temp.Push(top);
-        }
-
-        while (temp.Count > 0) {
-            Cards.Push(temp.Pop());
-=======
         if (Cards.Count == 0 || card is null) return;
 
         // Most of the time this will be the top card; handle that fast path
@@ -120,7 +106,6 @@ public class FoundationStack : IFindMoveableCards, IDropTarget, IDragFrom {
         // Restore the remaining cards back to the main stack in original order
         while (buffer.Count > 0) {
             Cards.Push(buffer.Pop());
->>>>>>> Stashed changes
         }
     }
 
