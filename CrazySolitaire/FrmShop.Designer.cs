@@ -111,6 +111,7 @@
             lblReverseCost = new Label();
             lblReverseDescription = new Label();
             PnlReversePurchaseBx = new Panel();
+            lblReversNoMoney = new Label();
             ((System.ComponentModel.ISupportInitialize)picBox_coin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ReverseCoinIcon).BeginInit();
             PnlReversePurchaseBx.SuspendLayout();
@@ -934,6 +935,8 @@
             // 
             // PnlReversePurchaseBx
             // 
+            PnlReversePurchaseBx.BackColor = Color.FromArgb(64, 0, 0);
+            PnlReversePurchaseBx.Controls.Add(lblReversNoMoney);
             PnlReversePurchaseBx.Controls.Add(lblReverseCard);
             PnlReversePurchaseBx.Controls.Add(lblReverseDescription);
             PnlReversePurchaseBx.Controls.Add(PnlReverseCard);
@@ -944,6 +947,18 @@
             PnlReversePurchaseBx.Size = new Size(952, 169);
             PnlReversePurchaseBx.TabIndex = 79;
             PnlReversePurchaseBx.Click += ReversePurchase_Click;
+            // 
+            // lblReversNoMoney
+            // 
+            lblReversNoMoney.AutoSize = true;
+            lblReversNoMoney.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblReversNoMoney.ForeColor = Color.White;
+            lblReversNoMoney.Location = new Point(619, 8);
+            lblReversNoMoney.Name = "lblReversNoMoney";
+            lblReversNoMoney.Size = new Size(320, 46);
+            lblReversNoMoney.TabIndex = 79;
+            lblReversNoMoney.Text = "Not Enough Coins!";
+            lblReversNoMoney.Visible = false;
             // 
             // FrmShop
             // 
@@ -1123,5 +1138,6 @@
         private Label lblReverseCost;
         private Label lblReverseDescription;
         private Panel PnlReversePurchaseBx;
+        private Label lblReversNoMoney;
     }
 }

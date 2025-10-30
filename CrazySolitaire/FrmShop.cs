@@ -153,9 +153,34 @@ namespace CrazySolitaire.Code
             }
         }
 
-        private void ReversePurchase_Click(object sender, EventArgs e)
-        {
-            int COST = 25;
+        private void ReversePurchase_Click(object sender, EventArgs e){
+            PurchaseItem(ShopItems.UnoReverse, PnlReversePurchaseBx, lblReversNoMoney);
+        }
+
+        private void PurchaseItem(ShopItems item, Panel clickBox, Label noMoney) {
+            // if the player has enough coins for the item
+            if (Game.Coins >= costs[item]){
+
+            }
+            // if they don't have enough coins for the item
+            else {
+                // flash the box flash red and make the not enough
+                // coins message appear
+                clickBox.BackColor = Color.Red;
+                noMoney.Show();
+                var resetColor = Task.Run(async delegate {
+                    await Task.Delay(150);
+                    clickBox.BackColor = Color.FromArgb(64, 0, 0);
+                });
+                resetColor.Wait();
+                resetColor.Dispose();
+                var hideNoMoneyDelay = Task.Run(async delegate {
+                    await Task.Delay(1000);
+                });
+                hideNoMoneyDelay.Wait();
+                noMoney.Hide();
+                hideNoMoneyDelay.Dispose();
+            }
         }
     }
 }
