@@ -880,6 +880,7 @@
             PnlReverseCard.Name = "PnlReverseCard";
             PnlReverseCard.Size = new Size(106, 162);
             PnlReverseCard.TabIndex = 73;
+            PnlReverseCard.Click += ReversePurchase_Click;
             // 
             // lblReverseCard
             // 
@@ -891,6 +892,7 @@
             lblReverseCard.Size = new Size(357, 54);
             lblReverseCard.TabIndex = 74;
             lblReverseCard.Text = "Uno Reverse Card";
+            lblReverseCard.Click += ReversePurchase_Click;
             // 
             // underline
             // 
@@ -910,6 +912,7 @@
             ReverseCoinIcon.Size = new Size(40, 45);
             ReverseCoinIcon.TabIndex = 76;
             ReverseCoinIcon.TabStop = false;
+            ReverseCoinIcon.Click += ReversePurchase_Click;
             // 
             // lblReverseCost
             // 
@@ -923,6 +926,7 @@
             lblReverseCost.TabIndex = 77;
             lblReverseCost.Text = "num";
             lblReverseCost.TextAlign = ContentAlignment.MiddleLeft;
+            lblReverseCost.Click += ReversePurchase_Click;
             // 
             // lblReverseDescription
             // 
@@ -934,6 +938,7 @@
             lblReverseDescription.Size = new Size(764, 41);
             lblReverseDescription.TabIndex = 78;
             lblReverseDescription.Text = "Toggles between acending and decending card order";
+            lblReverseDescription.Click += ReversePurchase_Click;
             // 
             // PnlReversePurchaseBx
             // 
@@ -961,6 +966,7 @@
             lblReversNoMoney.TabIndex = 79;
             lblReversNoMoney.Text = "Not Enough Coins!";
             lblReversNoMoney.Visible = false;
+            lblReversNoMoney.Click += ReversePurchase_Click;
             // 
             // pnlReverseCountIcon
             // 
