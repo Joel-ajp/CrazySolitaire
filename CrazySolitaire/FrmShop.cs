@@ -17,7 +17,10 @@ namespace CrazySolitaire.Code
         public FrmTitle titleScreen { get; set; }
         // all of the light bulbs around the sides
         private Panel[] bulbs;
-
+        // a parallel array to bulbs to keep track of if the 
+        // light is on or off
+        private bool[] bulbIsOn;
+        
         // items available in the shop
         public enum ShopItems{
             UnoReverse
@@ -40,6 +43,7 @@ namespace CrazySolitaire.Code
             // order because the lihgt will be moving in clockwise order
             // and it will cause problems in the script if those are
             // the same direction
+            #region this.bulbs = [...]
             this.bulbs = [
                 bulb2a,
                 bulb3a,
@@ -111,6 +115,80 @@ namespace CrazySolitaire.Code
                 bulb1c,
                 bulb1b,
                 bulb1a];
+            #endregion
+            #region this.bulbIsOn = [...]
+            this.bulbIsOn = [
+                true,
+                true,
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                true,
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                true,
+                true];
+            #endregion
         }
 
         private void btnBackToStart_Click(object sender, EventArgs e)
@@ -140,23 +218,25 @@ namespace CrazySolitaire.Code
             for (int i = 0; i < bulbs.Length; i++)
             {
                 // if the lightbulb before it is on
-                if ((i == bulbs.Length - 1 && bulbs[0].BackgroundImage == Resources.lightBulbOn) || (i != bulbs.Length - 1 && bulbs[i + 1].BackgroundImage == Resources.lightBulbOn))
+                if ((i == bulbs.Length - 1 && bulbIsOn[0]) || (i != bulbs.Length - 1 && bulbIsOn[i + 1]))
                 {
                     // check if the lightbulb is off
-                    if (bulbs[i].BackgroundImage == Resources.lightBulbOff)
+                    if (!bulbIsOn[i])
                     {
                         // turn on the bulb
                         bulbs[i].BackgroundImage = Resources.lightBulbOn;
+                        bulbIsOn[i] = true;
                     }
                     // if the one before it is off
                 }
                 else
                 {
                     // check if the lightbulb is on
-                    if (bulbs[i].BackgroundImage == Resources.lightBulbOn)
+                    if (bulbIsOn[i])
                     {
                         // turn off the bulb
                         bulbs[i].BackgroundImage = Resources.lightBulbOff;
+                        bulbIsOn[i] = false;
                     }
                 }
             }
