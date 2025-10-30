@@ -916,9 +916,9 @@
             lblReverseCost.ForeColor = Color.White;
             lblReverseCost.Location = new Point(149, 44);
             lblReverseCost.Name = "lblReverseCost";
-            lblReverseCost.Size = new Size(75, 60);
+            lblReverseCost.Size = new Size(119, 60);
             lblReverseCost.TabIndex = 77;
-            lblReverseCost.Text = "23";
+            lblReverseCost.Text = "num";
             lblReverseCost.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblReverseDescription

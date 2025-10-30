@@ -13,13 +13,27 @@ namespace CrazySolitaire.Code
 {
     public partial class FrmShop : Form
     {
+        // the screen to go back to when you hit the back button
         public FrmTitle titleScreen { get; set; }
+        // all of the light bulbs around the sides
         private Panel[] bulbs;
+
+        // items available in the shop
+        public enum ShopItems{
+            UnoReverse
+        }
+
+        // the costs of the shop items
+        public Dictionary<ShopItems, int> costs = new();
 
         public FrmShop(FrmTitle cameFrom)
         {
             InitializeComponent();
             this.titleScreen = cameFrom;
+
+            costs.Add(ShopItems.UnoReverse, 25);
+
+            lblReverseCost.Text = costs[ShopItems.UnoReverse].ToString();
 
             // store all of the light bulbs in an array so you can
             // itterate over them later. They're listed in counterclockwise
@@ -141,7 +155,7 @@ namespace CrazySolitaire.Code
 
         private void ReversePurchase_Click(object sender, EventArgs e)
         {
-
+            int COST = 25;
         }
     }
 }
