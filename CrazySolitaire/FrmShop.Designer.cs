@@ -112,6 +112,8 @@
             lblReverseDescription = new Label();
             PnlReversePurchaseBx = new Panel();
             lblReversNoMoney = new Label();
+            panel1 = new Panel();
+            lblReverseCount = new Label();
             ((System.ComponentModel.ISupportInitialize)picBox_coin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ReverseCoinIcon).BeginInit();
             PnlReversePurchaseBx.SuspendLayout();
@@ -960,12 +962,34 @@
             lblReversNoMoney.Text = "Not Enough Coins!";
             lblReversNoMoney.Visible = false;
             // 
+            // panel1
+            // 
+            panel1.BackgroundImage = Properties.Resources.uno_reverse_yellow;
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Location = new Point(63, 713);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(46, 61);
+            panel1.TabIndex = 80;
+            // 
+            // lblReverseCount
+            // 
+            lblReverseCount.AutoSize = true;
+            lblReverseCount.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold);
+            lblReverseCount.ForeColor = Color.White;
+            lblReverseCount.Location = new Point(65, 775);
+            lblReverseCount.Name = "lblReverseCount";
+            lblReverseCount.Size = new Size(44, 50);
+            lblReverseCount.TabIndex = 81;
+            lblReverseCount.Text = "n";
+            // 
             // FrmShop
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 0, 0);
             ClientSize = new Size(1115, 899);
+            Controls.Add(lblReverseCount);
+            Controls.Add(panel1);
             Controls.Add(PnlReversePurchaseBx);
             Controls.Add(underline);
             Controls.Add(lblCoinCount);
@@ -1139,5 +1163,7 @@
         private Label lblReverseDescription;
         private Panel PnlReversePurchaseBx;
         private Label lblReversNoMoney;
+        private Panel panel1;
+        private Label lblReverseCount;
     }
 }

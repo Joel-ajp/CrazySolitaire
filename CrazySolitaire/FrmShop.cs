@@ -122,6 +122,7 @@ namespace CrazySolitaire.Code
         private void FrmShop_Load(object sender, EventArgs e)
         {
             lblCoinCount.Text = $"Coins:{Game.Coins}";
+            lblReverseCount.Text = $"{Game.UnoReverses}";
         }
 
         // this fires every time bulbTimer fires
@@ -155,9 +156,10 @@ namespace CrazySolitaire.Code
 
         private void ReversePurchase_Click(object sender, EventArgs e){
             bool bought = PurchaseItem(ShopItems.UnoReverse, PnlReversePurchaseBx, lblReversNoMoney);
-            // give them the card
+            // give them the card if it went through
             if (bought) {
-                System.Diagnostics.Trace.WriteLine("Bought Uno Reverse Card");
+                Game.UnoReverses = Game.UnoReverses + 1;
+                lblReverseCount.Text = $"{Game.UnoReverses}";
             }
         }
 
