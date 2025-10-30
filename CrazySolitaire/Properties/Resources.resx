@@ -121,9 +121,6 @@
   <data name="7_of_hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\7_of_hearts.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="lightBulbOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\lightBulbOff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="9_of_diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\9_of_diamonds.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,6 +132,9 @@
   </data>
   <data name="4_of_hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\4_of_hearts.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="2_of_clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2_of_clubs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="8_of_clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\8_of_clubs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,11 +202,17 @@
   <data name="10_of_diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\10_of_diamonds.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="uno_reverse_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\uno_reverse_green.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ransom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ransom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="2_of_spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2_of_spades.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="uno_reverse_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\uno_reverse_blue.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="jack_of_clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\jack_of_clubs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -246,6 +252,12 @@
   </data>
   <data name="black_joker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\black_joker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="king_of_clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\king_of_clubs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="uno_reverse_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\uno_reverse_red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="lightBulbOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lightBulbOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -289,17 +301,14 @@
   <data name="3_of_diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3_of_diamonds.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ace_of_hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ace_of_hearts.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ace_of_diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ace_of_diamonds.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="2_of_clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\2_of_clubs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ace_of_hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ace_of_hearts.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="king_of_clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\king_of_clubs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="lightBulbOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lightBulbOff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="10_of_hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\10_of_hearts.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -315,5 +324,8 @@
   </data>
   <data name="7_of_clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\7_of_clubs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="uno_reverse_yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\uno_reverse_yellow.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -871,6 +871,8 @@
             // 
             // PnlReverseCard
             // 
+            PnlReverseCard.BackgroundImage = Properties.Resources.uno_reverse_yellow;
+            PnlReverseCard.BackgroundImageLayout = ImageLayout.Stretch;
             PnlReverseCard.Location = new Point(3, 3);
             PnlReverseCard.Name = "PnlReverseCard";
             PnlReverseCard.Size = new Size(106, 162);
@@ -881,7 +883,7 @@
             lblReverseCard.AutoSize = true;
             lblReverseCard.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblReverseCard.ForeColor = Color.White;
-            lblReverseCard.Location = new Point(107, 0);
+            lblReverseCard.Location = new Point(111, 0);
             lblReverseCard.Name = "lblReverseCard";
             lblReverseCard.Size = new Size(357, 54);
             lblReverseCard.TabIndex = 74;
