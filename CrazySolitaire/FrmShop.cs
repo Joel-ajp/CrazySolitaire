@@ -123,6 +123,14 @@ namespace CrazySolitaire.Code
         {
             lblCoinCount.Text = $"Coins:{Game.Coins}";
             lblReverseCount.Text = $"{Game.UnoReverses}";
+
+            Random rand = new();
+            var colors = Enum.GetValues(typeof(UnoColor));
+            var randomColor = (UnoColor)colors.GetValue(rand.Next(4));
+            PnlReverseCard.BackgroundImage = Resources.ResourceManager.GetObject($"uno_reverse_{randomColor.ToString().ToLower()}") as Bitmap;
+
+            randomColor = (UnoColor)colors.GetValue(rand.Next(4));
+            pnlReverseCountIcon.BackgroundImage = Resources.ResourceManager.GetObject($"uno_reverse_{randomColor.ToString().ToLower()}") as Bitmap;
         }
 
         // this fires every time bulbTimer fires
