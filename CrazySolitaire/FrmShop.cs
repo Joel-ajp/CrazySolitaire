@@ -154,16 +154,36 @@ namespace CrazySolitaire.Code
         }
 
         private void ReversePurchase_Click(object sender, EventArgs e){
-            PurchaseItem(ShopItems.UnoReverse, PnlReversePurchaseBx, lblReversNoMoney);
+            bool bought = PurchaseItem(ShopItems.UnoReverse, PnlReversePurchaseBx, lblReversNoMoney);
+            // give them the card
+            if (bought) {
+                System.Diagnostics.Trace.WriteLine("Bought Uno Reverse Card");
+            }
         }
 
-        private void PurchaseItem(ShopItems item, Panel clickBox, Label noMoney) {
+        private bool PurchaseItem(ShopItems item, Panel clickBox, Label noMoney) {
             // if the player has enough coins for the item
             if (Game.Coins >= costs[item]){
+                // make the box flash gold
+                clickBox.BackColor = Color.Gold;
+                var resetColor = Task.Run(async delegate {
+                    await Task.Delay(150);
+                    clickBox.BackColor = Color.FromArgb(64, 0, 0);
+                });
+                resetColor.Wait();
+                resetColor.Dispose();
 
-            }
+                // subtract coins
+                Game.Coins = Game.Coins - costs[item];
+
+                // update shop screen coin tally
+                lblCoinCount.Text = $"Coins:{Game.Coins}";
+
+                // return that they got the thing
+                return true;
+
             // if they don't have enough coins for the item
-            else {
+            }else {
                 // flash the box flash red and make the not enough
                 // coins message appear
                 clickBox.BackColor = Color.Red;
@@ -180,6 +200,9 @@ namespace CrazySolitaire.Code
                 hideNoMoneyDelay.Wait();
                 noMoney.Hide();
                 hideNoMoneyDelay.Dispose();
+
+                // return that they didn't get the thing
+                return false;
             }
         }
     }
