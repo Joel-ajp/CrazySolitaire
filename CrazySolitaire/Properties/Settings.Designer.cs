@@ -34,5 +34,17 @@ namespace CrazySolitaire.Properties {
                 this["Coins"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int UnoReverses {
+            get {
+                return ((int)(this["UnoReverses"]));
+            }
+            set {
+                this["UnoReverses"] = value;
+            }
+        }
     }
 }

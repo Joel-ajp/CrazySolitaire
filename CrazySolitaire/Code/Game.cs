@@ -38,6 +38,19 @@ public static class Game {
             CoinsChanged?.Invoke(value);
         }
     }
+
+    // the getter and setter for the owned uno reverse cards
+    public static int UnoReverses
+    {
+        get => Properties.Settings.Default.UnoReverses;
+        set {
+            if (Properties.Settings.Default.UnoReverses == value) return;
+            Properties.Settings.Default.UnoReverses = value;
+            Properties.Settings.Default.Save();
+        }
+    }
+
+
     // a boolean keeping track of whether or not the program should
     // be temporarily supressing move counting
     public static bool SuppressMoveCounting { get; set; }
