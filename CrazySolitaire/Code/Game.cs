@@ -3,6 +3,9 @@
 namespace CrazySolitaire;
 
 public static class Game {
+    // Difficulty modes for controlling stock reload limits
+    public enum DifficultyMode { Easy, Normal, Hard, Unlimited }
+
     // the title screen
     public static Form TitleForm { get; set; }
     // an instance of the deck of cards
@@ -16,6 +19,10 @@ public static class Game {
     // an integer keeping track of how many times the stock has been reloaded,
     // for explosion purposes
     public static int StockReloadCount { get; set; }
+    // maximum allowed stock reloads for the current game (-1 means unlimited)
+    public static int MaxStockReloads { get; private set; } = 3;
+    // currently selected difficulty
+    public static DifficultyMode Difficulty { get; private set; } = DifficultyMode.Normal;
     // an integer keeping track of the number of moves the player has made, for
     // scorekeeping purposes
     public static int MoveCounter { get; set; }
@@ -63,10 +70,26 @@ public static class Game {
         SuppressMoveCounting = false;
     }
 
+    // Configure difficulty and corresponding stock reload limits
+    public static void ApplyDifficulty(DifficultyMode mode) {
+        Difficulty = mode;
+        MaxStockReloads = mode switch {
+            DifficultyMode.Easy => 5,
+            DifficultyMode.Normal => 3,
+            DifficultyMode.Hard => 1,
+            DifficultyMode.Unlimited => -1, // -1 indicates unlimited
+            _ => 3
+        };
+    }
+
     // a helper method to initialize and populate all of the different objects
     // and collections of objects that make up the game
     public static void Init(Panel panTalon, Panel[] panTableauStacks, Dictionary<Suit, Panel> panFoundationStacks) {
         Deck = new();
+
+        // reset counters for a fresh game
+        MoveCounter = 0;
+        StockReloadCount = 0;
 
         // create talon
         Talon = new(panTalon);

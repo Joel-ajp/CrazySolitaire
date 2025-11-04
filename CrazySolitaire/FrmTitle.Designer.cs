@@ -26,6 +26,8 @@
         {
             btnStartGame = new Button();
             pictureBox1 = new PictureBox();
+            cboDifficulty = new ComboBox();
+            lblDifficulty = new Label();
             button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -55,7 +57,31 @@
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
-            // button1
+            // cboDifficulty
+            // 
+            cboDifficulty.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboDifficulty.FormattingEnabled = true;
+            cboDifficulty.Items.AddRange(new object[] { "Easy", "Normal", "Hard", "Unlimited" });
+            cboDifficulty.Location = new Point(370, 545);
+            cboDifficulty.Name = "cboDifficulty";
+            cboDifficulty.Size = new Size(181, 23);
+            cboDifficulty.TabIndex = 2;
+            cboDifficulty.SelectedIndexChanged += cboDifficulty_SelectedIndexChanged;
+            // default to Normal
+            cboDifficulty.SelectedIndex = 1;
+            // 
+            // lblDifficulty
+            // 
+            lblDifficulty.AutoSize = true;
+            lblDifficulty.BackColor = Color.Black;
+            lblDifficulty.ForeColor = Color.White;
+            lblDifficulty.Location = new Point(290, 548);
+            lblDifficulty.Name = "lblDifficulty";
+            lblDifficulty.Size = new Size(62, 15);
+            lblDifficulty.TabIndex = 3;
+            lblDifficulty.Text = "Difficulty:";
+            // 
+            // button1 (Shop)
             // 
             button1.AutoSize = true;
             button1.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -63,7 +89,7 @@
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
             button1.Size = new Size(226, 67);
-            button1.TabIndex = 2;
+            button1.TabIndex = 4;
             button1.Text = "Shop";
             button1.UseVisualStyleBackColor = true;
             button1.Click += btnOpenShop_Click;
@@ -74,9 +100,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(1115, 899);
-            Controls.Add(button1);
             Controls.Add(btnStartGame);
+            Controls.Add(button1);
+            Controls.Add(lblDifficulty);
+            Controls.Add(cboDifficulty);
             Controls.Add(pictureBox1);
+            pictureBox1.SendToBack(); // ensure background stays behind other controls
             Margin = new Padding(3, 4, 3, 4);
             Name = "FrmTitle";
             StartPosition = FormStartPosition.CenterScreen;
@@ -90,6 +119,8 @@
 
         private Button btnStartGame;
         private PictureBox pictureBox1;
+        private ComboBox cboDifficulty;
+        private Label lblDifficulty;
         private Button button1;
     }
 }

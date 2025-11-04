@@ -50,7 +50,8 @@ namespace CrazySolitaire {
             if (pbStock.BackgroundImage is null)
             {
                 Game.StockReloadCount++;
-                if (Game.StockReloadCount > 3)
+                // if MaxStockReloads is -1, it's unlimited
+                if (Game.MaxStockReloads != -1 && Game.StockReloadCount > Game.MaxStockReloads)
                 {
                     Game.Explode();
                     MessageBox.Show("You computer has been infected with ransomware", "You have been infected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -61,13 +62,21 @@ namespace CrazySolitaire {
                 else
                 {
                     Game.Talon.ReleaseIntoDeck(Game.Deck);
-                    pbStock.BackgroundImage = Game.StockReloadCount switch
+                    // In Unlimited mode, do not change color progression — keep green
+                    if (Game.MaxStockReloads == -1)
                     {
-                        1 => Resources.back_green,
-                        2 => Resources.back_orange,
-                        3 => Resources.back_red,
-                        _ => pbStock.BackgroundImage
-                    };
+                        pbStock.BackgroundImage = Resources.back_green;
+                    }
+                    else
+                    {
+                        pbStock.BackgroundImage = Game.StockReloadCount switch
+                        {
+                            1 => Resources.back_green,
+                            2 => Resources.back_orange,
+                            3 => Resources.back_red,
+                            _ => pbStock.BackgroundImage
+                        };
+                    }
                 }
             }
             else
