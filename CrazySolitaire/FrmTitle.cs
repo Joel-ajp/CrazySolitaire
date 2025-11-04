@@ -1,30 +1,41 @@
-﻿namespace CrazySolitaire {
-    public partial class FrmTitle : Form {
-        public FrmTitle() {
+using CrazySolitaire.Code;
+
+namespace CrazySolitaire {
+    public partial class FrmTitle : Form
+    {
+        public FrmTitle()
+        {
             InitializeComponent();
         }
 
-        private void FrmTitle_Load(object sender, EventArgs e) {
+        private void FrmTitle_Load(object sender, EventArgs e)
+        {
             Game.TitleForm = this;
             // Ensure difficulty is applied based on current combo selection
             // Default index is set in designer to Normal (index 1).
             ApplyDifficultyFromCombo();
         }
 
-        private void btnStartGame_Click(object sender, EventArgs e) {
+        private void btnStartGame_Click(object sender, EventArgs e)
+        {
             FrmGame frmGame = new();
             frmGame.Show();
             Hide();
         }
 
-        private void cboDifficulty_SelectedIndexChanged(object sender, EventArgs e) {
+        // Added on difficulty-modes branch
+        private void cboDifficulty_SelectedIndexChanged(object sender, EventArgs e)
+        {
             ApplyDifficultyFromCombo();
         }
 
-        private void ApplyDifficultyFromCombo() {
+        private void ApplyDifficultyFromCombo()
+        {
             if (cboDifficulty == null) return;
+
             var sel = cboDifficulty.SelectedItem?.ToString();
-            switch (sel) {
+            switch (sel)
+            {
                 case "Easy":
                     Game.ApplyDifficulty(Game.DifficultyMode.Easy);
                     break;
@@ -41,6 +52,14 @@
                     Game.ApplyDifficulty(Game.DifficultyMode.Normal);
                     break;
             }
+        }
+
+        // Added on main branch
+        private void btnOpenShop_Click(object sender, EventArgs e)
+        {
+            FrmShop frmShop = new(this);
+            frmShop.Show();
+            Hide();
         }
     }
 }

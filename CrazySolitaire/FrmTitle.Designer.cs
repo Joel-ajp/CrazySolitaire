@@ -19,13 +19,16 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Required method for Designer support - do not modify the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             btnStartGame = new Button();
             pictureBox1 = new PictureBox();
             cboDifficulty = new ComboBox();
             lblDifficulty = new Label();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -33,9 +36,10 @@
             // 
             btnStartGame.AutoSize = true;
             btnStartGame.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnStartGame.Location = new Point(370, 584);
+            btnStartGame.Location = new Point(286, 779);
+            btnStartGame.Margin = new Padding(3, 4, 3, 4);
             btnStartGame.Name = "btnStartGame";
-            btnStartGame.Size = new Size(181, 50);
+            btnStartGame.Size = new Size(226, 67);
             btnStartGame.TabIndex = 0;
             btnStartGame.Text = "Start Game";
             btnStartGame.UseVisualStyleBackColor = true;
@@ -47,8 +51,9 @@
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(976, 674);
+            pictureBox1.Size = new Size(1115, 899);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
@@ -76,16 +81,32 @@
             lblDifficulty.TabIndex = 3;
             lblDifficulty.Text = "Difficulty:";
             // 
+            // button1 (Shop)
+            // 
+            button1.AutoSize = true;
+            button1.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Location = new Point(531, 779);
+            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Name = "button1";
+            button1.Size = new Size(226, 67);
+            button1.TabIndex = 4;
+            button1.Text = "Shop";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += btnOpenShop_Click;
+            // 
             // FrmTitle
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
-            ClientSize = new Size(976, 674);
+            ClientSize = new Size(1115, 899);
+            Controls.Add(btnStartGame);
+            Controls.Add(button1);
             Controls.Add(lblDifficulty);
             Controls.Add(cboDifficulty);
-            Controls.Add(btnStartGame);
             Controls.Add(pictureBox1);
+            pictureBox1.SendToBack(); // ensure background stays behind other controls
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FrmTitle";
             StartPosition = FormStartPosition.CenterScreen;
             Load += FrmTitle_Load;
@@ -100,5 +121,6 @@
         private PictureBox pictureBox1;
         private ComboBox cboDifficulty;
         private Label lblDifficulty;
+        private Button button1;
     }
 }
