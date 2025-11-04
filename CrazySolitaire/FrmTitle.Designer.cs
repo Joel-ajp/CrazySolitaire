@@ -27,7 +27,6 @@
             btnStartGame = new Button();
             pictureBox1 = new PictureBox();
             cboDifficulty = new ComboBox();
-            lblDifficulty = new Label();
             button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -36,10 +35,9 @@
             // 
             btnStartGame.AutoSize = true;
             btnStartGame.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnStartGame.Location = new Point(286, 779);
-            btnStartGame.Margin = new Padding(3, 4, 3, 4);
+            btnStartGame.Location = new Point(250, 533);
             btnStartGame.Name = "btnStartGame";
-            btnStartGame.Size = new Size(226, 67);
+            btnStartGame.Size = new Size(198, 50);
             btnStartGame.TabIndex = 0;
             btnStartGame.Text = "Start Game";
             btnStartGame.UseVisualStyleBackColor = true;
@@ -51,9 +49,8 @@
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1115, 899);
+            pictureBox1.Size = new Size(976, 674);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
@@ -62,33 +59,21 @@
             cboDifficulty.DropDownStyle = ComboBoxStyle.DropDownList;
             cboDifficulty.FormattingEnabled = true;
             cboDifficulty.Items.AddRange(new object[] { "Easy", "Normal", "Hard", "Unlimited" });
-            cboDifficulty.Location = new Point(370, 545);
+            cboDifficulty.Location = new Point(270, 588);
+            cboDifficulty.Margin = new Padding(3, 2, 3, 2);
             cboDifficulty.Name = "cboDifficulty";
-            cboDifficulty.Size = new Size(181, 23);
+            cboDifficulty.Size = new Size(159, 23);
             cboDifficulty.TabIndex = 2;
             cboDifficulty.SelectedIndexChanged += cboDifficulty_SelectedIndexChanged;
-            // default to Normal
-            cboDifficulty.SelectedIndex = 1;
+            cboDifficulty.SelectedIndex = 0;
             // 
-            // lblDifficulty
-            // 
-            lblDifficulty.AutoSize = true;
-            lblDifficulty.BackColor = Color.Black;
-            lblDifficulty.ForeColor = Color.White;
-            lblDifficulty.Location = new Point(290, 548);
-            lblDifficulty.Name = "lblDifficulty";
-            lblDifficulty.Size = new Size(62, 15);
-            lblDifficulty.TabIndex = 3;
-            lblDifficulty.Text = "Difficulty:";
-            // 
-            // button1 (Shop)
+            // button1
             // 
             button1.AutoSize = true;
             button1.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(531, 779);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(465, 533);
             button1.Name = "button1";
-            button1.Size = new Size(226, 67);
+            button1.Size = new Size(198, 50);
             button1.TabIndex = 4;
             button1.Text = "Shop";
             button1.UseVisualStyleBackColor = true;
@@ -96,17 +81,14 @@
             // 
             // FrmTitle
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
-            ClientSize = new Size(1115, 899);
+            ClientSize = new Size(976, 674);
             Controls.Add(btnStartGame);
             Controls.Add(button1);
-            Controls.Add(lblDifficulty);
             Controls.Add(cboDifficulty);
             Controls.Add(pictureBox1);
-            pictureBox1.SendToBack(); // ensure background stays behind other controls
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FrmTitle";
             StartPosition = FormStartPosition.CenterScreen;
             Load += FrmTitle_Load;
@@ -120,7 +102,6 @@
         private Button btnStartGame;
         private PictureBox pictureBox1;
         private ComboBox cboDifficulty;
-        private Label lblDifficulty;
         private Button button1;
     }
 }
