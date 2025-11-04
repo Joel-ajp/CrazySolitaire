@@ -20,12 +20,13 @@ namespace CrazySolitaire.Code
         // a parallel array to bulbs to keep track of if the 
         // light is on or off
         private bool[] bulbIsOn;
-        
+
         // Track whether we're navigating back (so we don't exit the app)
         private bool _navigatingBack = false;
 
         // items available in the shop
-        public enum ShopItems{
+        public enum ShopItems
+        {
             UnoReverse
         }
 
@@ -250,21 +251,26 @@ namespace CrazySolitaire.Code
             }
         }
 
-        private void ReversePurchase_Click(object sender, EventArgs e){
+        private void ReversePurchase_Click(object sender, EventArgs e)
+        {
             bool bought = PurchaseItem(ShopItems.UnoReverse, PnlReversePurchaseBx, lblReversNoMoney);
             // give them the card if it went through
-            if (bought) {
+            if (bought)
+            {
                 Game.UnoReverses = Game.UnoReverses + 1;
                 lblReverseCount.Text = $"{Game.UnoReverses}";
             }
         }
 
-        private bool PurchaseItem(ShopItems item, Panel clickBox, Label noMoney) {
+        private bool PurchaseItem(ShopItems item, Panel clickBox, Label noMoney)
+        {
             // if the player has enough coins for the item
-            if (Game.Coins >= costs[item]){
+            if (Game.Coins >= costs[item])
+            {
                 // make the box flash gold
                 clickBox.BackColor = Color.Gold;
-                var resetColor = Task.Run(async delegate {
+                var resetColor = Task.Run(async delegate
+                {
                     await Task.Delay(150);
                     clickBox.BackColor = Color.FromArgb(64, 0, 0);
                 });
@@ -280,19 +286,23 @@ namespace CrazySolitaire.Code
                 // return that they got the thing
                 return true;
 
-            // if they don't have enough coins for the item
-            }else {
+                // if they don't have enough coins for the item
+            }
+            else
+            {
                 // flash the box flash red and make the not enough
                 // coins message appear
                 clickBox.BackColor = Color.Red;
                 noMoney.Show();
-                var resetColor = Task.Run(async delegate {
+                var resetColor = Task.Run(async delegate
+                {
                     await Task.Delay(150);
                     clickBox.BackColor = Color.FromArgb(64, 0, 0);
                 });
                 resetColor.Wait();
                 resetColor.Dispose();
-                var hideNoMoneyDelay = Task.Run(async delegate {
+                var hideNoMoneyDelay = Task.Run(async delegate
+                {
                     await Task.Delay(1000);
                 });
                 hideNoMoneyDelay.Wait();
@@ -311,6 +321,16 @@ namespace CrazySolitaire.Code
             {
                 titleScreen.Close();
             }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PnlReversePurchaseBx_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
