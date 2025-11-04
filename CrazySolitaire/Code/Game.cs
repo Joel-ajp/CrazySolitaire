@@ -23,6 +23,8 @@ public static class Game {
     public static int MaxStockReloads { get; private set; } = 3;
     // currently selected difficulty
     public static DifficultyMode Difficulty { get; private set; } = DifficultyMode.Normal;
+    // coin multiplier tied to difficulty (Normal default => 3)
+    public static int CoinMultiplier { get; private set; } = 3;
     // an integer keeping track of the number of moves the player has made, for
     // scorekeeping purposes
     public static int MoveCounter { get; set; }
@@ -44,6 +46,14 @@ public static class Game {
             Properties.Settings.Default.Save();
             CoinsChanged?.Invoke(value);
         }
+    }
+
+    // Helper: award coins applying the current difficulty multiplier.
+    // Positive amounts are multiplied; negative amounts (deductions) are not.
+    public static void AddCoins(int amount)
+    {
+        if (amount == 0) return;
+        Coins += amount > 0 ? amount * CoinMultiplier : amount;
     }
 
     // the getter and setter for the owned uno reverse cards
@@ -78,6 +88,14 @@ public static class Game {
             DifficultyMode.Normal => 3,
             DifficultyMode.Hard => 1,
             DifficultyMode.Unlimited => -1, // -1 indicates unlimited
+            _ => 3
+        };
+        // Set coin multiplier per difficulty
+        CoinMultiplier = mode switch {
+            DifficultyMode.Unlimited => 1,
+            DifficultyMode.Easy => 2,
+            DifficultyMode.Normal => 3,
+            DifficultyMode.Hard => 5,
             _ => 3
         };
     }

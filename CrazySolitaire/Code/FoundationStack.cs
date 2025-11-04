@@ -66,7 +66,7 @@ public class FoundationStack : IFindMoveableCards, IDropTarget, IDragFrom {
         // award coins to the player if this is the highest card
         // that has been added to this stack thus far
         if (c.Type > highestCard) {
-            Game.Coins++;
+            Game.AddCoins(1); // applies difficulty-based multiplier
             highestCard = c.Type;
             System.Diagnostics.Trace.WriteLine($"Coins: {Game.Coins}");
         }

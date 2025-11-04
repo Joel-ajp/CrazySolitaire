@@ -21,6 +21,9 @@ namespace CrazySolitaire.Code
         // light is on or off
         private bool[] bulbIsOn;
         
+        // Track whether we're navigating back (so we don't exit the app)
+        private bool _navigatingBack = false;
+
         // items available in the shop
         public enum ShopItems{
             UnoReverse
@@ -33,6 +36,9 @@ namespace CrazySolitaire.Code
         {
             InitializeComponent();
             this.titleScreen = cameFrom;
+
+            // Ensure closing the shop via X exits the app (closes hidden title)
+            this.FormClosing += FrmShop_FormClosing;
 
             costs.Add(ShopItems.UnoReverse, 25);
 
@@ -194,7 +200,9 @@ namespace CrazySolitaire.Code
         private void btnBackToStart_Click(object sender, EventArgs e)
         {
             titleScreen.Show();
-            Hide();
+            // Dispose this shop instead of hiding it so it doesn't linger
+            _navigatingBack = true;
+            Close();
         }
 
         private void FrmShop_Load(object sender, EventArgs e)
@@ -293,6 +301,15 @@ namespace CrazySolitaire.Code
 
                 // return that they didn't get the thing
                 return false;
+            }
+        }
+
+        private void FrmShop_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // If user closes the shop via X/Alt+F4, close the hidden title to exit the app
+            if (!_navigatingBack && titleScreen != null && !titleScreen.IsDisposed)
+            {
+                titleScreen.Close();
             }
         }
     }
