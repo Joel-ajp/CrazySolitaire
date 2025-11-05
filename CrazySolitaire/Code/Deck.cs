@@ -22,10 +22,16 @@ public class Deck {
                 cards.Enqueue(new(cardType, suit));
             }
         }
-        // shuffle
+
+        Shuffle();
+    }
+
+    public void Shuffle()
+    {
         Random rng = new();
         cards = new(cards.OrderBy(_ => rng.Next()));
     }
+
     // true when the deck is out of cards
     public bool IsEmpty() => cards.Count == 0;
     // helper function to draw a card. Removes it from the queue and returns it.
