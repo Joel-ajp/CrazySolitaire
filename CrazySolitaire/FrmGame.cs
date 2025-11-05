@@ -1,4 +1,6 @@
 using CrazySolitaire.Properties;
+using System;
+using System.Diagnostics;
 
 namespace CrazySolitaire {
     public partial class FrmGame : Form
@@ -18,14 +20,18 @@ namespace CrazySolitaire {
                 return cp;
             }
         }
-
+        public static Stopwatch GameTime = new Stopwatch();
         public FrmGame()
         {
+            
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //start timer
+            GameTime.Start();
+
             Instance = this;
             Panel[] panTableauStacks = new Panel[7];
             for (int i = 0; i < 7; i++)
@@ -100,9 +106,23 @@ namespace CrazySolitaire {
 
         public static void GameState() {             
             if (Game.IsGameWon) {
-               FrmHighScore frmHighScore = new();
+                //stop timer
+               GameTime.Stop();
+                //take note of elapsed time, convert to minutes in int
+                TimeSpan ts = GameTime.Elapsed;
+                int minutesTaken = (int)ts.TotalMinutes > 3 ? (int)ts.TotalMinutes - 3 : 0; //using 3 as the "target" time
+                //take note of how many cards remian in tableau stacks
+                int cardsRemaining = 0;
+
+                for (int i = 0; i < Game.TableauStacks.Length; i++)
+                {
+                    cardsRemaining += Game.TableauStacks[i].CountCards();
+                }
+                //calculate score (cards remaining in tablaeus + moves + minutes taken over 3 minutes)
+                Game.Score = Game.MoveCounter + minutesTaken;
+                FrmHighScore frmHighScore = new();
                frmHighScore.Show();
-               Instance.Hide();
+               Instance.Close();
             }
         }
 

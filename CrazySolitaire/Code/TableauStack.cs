@@ -22,6 +22,11 @@ public class TableauStack : IFindMoveableCards, IDropTarget, IDragFrom {
         c.PicBox.BringToFront();
     }
 
+    //returns the number of cards in a stack
+    public int CountCards() {
+        return Cards.Count;
+    }
+
     // a helper function that returns a list of cards that are movable
     public List<Card> FindMoveableCards() {
         // A card is movable if it belongs to the longest valid run (face-up, alternating colors, descending by 1)
