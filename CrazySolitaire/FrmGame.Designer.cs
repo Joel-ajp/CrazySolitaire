@@ -43,6 +43,7 @@
             panTableauStack_6 = new Panel();
             picBox_coin = new PictureBox();
             lblCoinCount = new Label();
+            InvButton = new Button();
             ((System.ComponentModel.ISupportInitialize)pbStock).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBox_coin).BeginInit();
             SuspendLayout();
@@ -177,12 +178,29 @@
             lblCoinCount.TabIndex = 7;
             lblCoinCount.Text = "Label1";
             // 
+            // InvButton
+            // 
+            InvButton.BackColor = Color.DeepPink;
+            InvButton.Font = new Font("Script MT Bold", 18F);
+            InvButton.ForeColor = Color.Black;
+            InvButton.Location = new Point(32, 608);
+            InvButton.Margin = new Padding(2);
+            InvButton.Name = "InvButton";
+            InvButton.Size = new Size(189, 39);
+            InvButton.TabIndex = 8;
+            InvButton.Text = "Inventory";
+            InvButton.UseVisualStyleBackColor = false;
+            InvButton.Click += InvButton_Click;
+            InvButton.MouseLeave += InvButton_MouseLeave;
+            InvButton.MouseHover += InvButton_MouseHover;
+            // 
             // FrmGame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 64, 0);
-            ClientSize = new Size(976, 674);
+            ClientSize = new Size(976, 637);
+            Controls.Add(InvButton);
             Controls.Add(lblCoinCount);
             Controls.Add(picBox_coin);
             Controls.Add(panTableauStack_6);
@@ -227,5 +245,6 @@
         private Panel panTableauStack_6;
         private PictureBox picBox_coin;
         private Label lblCoinCount;
+        private Button InvButton;
     }
 }

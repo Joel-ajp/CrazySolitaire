@@ -13,8 +13,10 @@ namespace CrazySolitaire {
         public static List<Card> CurDragRun { get; private set; } = new();
         private static Dictionary<Card, (Control parent, Point relLoc)> _preDragInfo = new();
 
-        protected override CreateParams CreateParams {
-            get {
+        protected override CreateParams CreateParams
+        {
+            get
+            {
                 var cp = base.CreateParams;
                 cp.ExStyle |= 0x02000000;    // Turn on WS_EX_COMPOSITED
                 return cp;
@@ -23,7 +25,7 @@ namespace CrazySolitaire {
         public static Stopwatch GameTime = new Stopwatch();
         public FrmGame()
         {
-            
+
             InitializeComponent();
         }
 
@@ -104,11 +106,13 @@ namespace CrazySolitaire {
             }
         }
 
-        public static void GameState() {             
-            if (Game.IsGameWon) {
+        public static void GameState()
+        {
+            if (Game.IsGameWon)
+            {
                 //stop timer
-               GameTime.Stop();
-               
+                GameTime.Stop();
+
                 //take note of elapsed time, convert to minutes in int
                 TimeSpan ts = GameTime.Elapsed;
                 int minutesTaken = (int)ts.TotalMinutes > 3 ? (int)ts.TotalMinutes - 3 : 0; //using 3 as the "target" time
@@ -118,18 +122,19 @@ namespace CrazySolitaire {
 
 
                 //calculate score = number of cards in foundation - 5(minutes over 3) - 20(stock reload count) - (number of moves over 52)
-                Game.Score = 5200 - (minutesTaken * 5) - (Game.StockReloadCount*20) - Game.MoveCounter;
+                Game.Score = 5200 - (minutesTaken * 5) - (Game.StockReloadCount * 20) - Game.MoveCounter;
                 Game.Score = Game.Score < 0 ? 0 : Game.Score; //ensure score doesn't go negative
                 System.Diagnostics.Trace.WriteLine($"Final Score: {Game.Score} (Moves (over 52): {Game.MoveCounter}, Extra Minutes: {minutesTaken}, Times Stock has reloaded {Game.StockReloadCount})");
 
                 //close form and open high score form
                 FrmHighScore frmHighScore = new();
-               frmHighScore.Show();
-               Instance.Hide();
+                frmHighScore.Show();
+                Instance.Hide();
             }
         }
 
-        public static void DragCard(Card c) {
+        public static void DragCard(Card c)
+        {
             CurDragCard = c;
             CardDraggedFrom = Game.FindDragFrom(c);
         }
@@ -141,14 +146,16 @@ namespace CrazySolitaire {
         public static bool IsDraggingCard(Card c) => CurDragCard == c;
 
         // Multi-card drag API
-        public static void StartRunDrag(Card startCard, List<Card> run) {
+        public static void StartRunDrag(Card startCard, List<Card> run)
+        {
             CurDragRun = run;
             CurDragCard = startCard;
             CardDraggedFrom = Game.FindDragFrom(startCard);
             _preDragInfo.Clear();
 
             // 1) Reparent to the form while preserving absolute positions
-            foreach (var card in run) {
+            foreach (var card in run)
+            {
                 var parent = card.PicBox.Parent;
                 var loc = card.PicBox.Location;
                 _preDragInfo[card] = (parent, loc);
@@ -160,39 +167,49 @@ namespace CrazySolitaire {
             // 2) Fix z-order: ensure lower (greater Y) cards are on top during drag
             // The run list is ordered from start (higher up) to bottom (lower down),
             // so bringing to front in this order yields bottom-most last (front-most).
-            foreach (var card in run) {
+            foreach (var card in run)
+            {
                 card.PicBox.BringToFront();
             }
         }
-        public static void MoveRunBy(Point delta) {
-            foreach (var card in CurDragRun) {
+        public static void MoveRunBy(Point delta)
+        {
+            foreach (var card in CurDragRun)
+            {
                 card.AdjustLocation(card.PicBox.Location.X + delta.X, card.PicBox.Location.Y + delta.Y);
             }
         }
-        public static void CancelRunDrag() {
+        public static void CancelRunDrag()
+        {
             // Return all cards to their original parent and relative location
-            foreach (var card in CurDragRun) {
-                if (_preDragInfo.TryGetValue(card, out var info)) {
+            foreach (var card in CurDragRun)
+            {
+                if (_preDragInfo.TryGetValue(card, out var info))
+                {
                     Instance.RemCard(card);
                     info.parent.AddCard(card);
                     card.AdjustLocation(info.relLoc.X, info.relLoc.Y);
                 }
             }
             // Rebuild original stack layout if tableau
-            if (CardDraggedFrom is TableauStack srcTs) {
+            if (CardDraggedFrom is TableauStack srcTs)
+            {
                 srcTs.RebuildLayout();
             }
             CurDragRun.Clear();
             CurDragCard = null;
         }
-        public static void CompleteRunDrop(TableauStack target) {
+        public static void CompleteRunDrop(TableauStack target)
+        {
             // Drop each card in order onto the target tableau (maintains visual order)
             bool counted = false;
-            foreach (var card in CurDragRun) {
+            foreach (var card in CurDragRun)
+            {
                 Game.SuppressMoveCounting = true;
                 target.Dropped(card);
                 Game.SuppressMoveCounting = false;
-                if (!counted) {
+                if (!counted)
+                {
                     Game.MoveCounter++;
                     System.Diagnostics.Debug.WriteLine($"Moves: {Game.MoveCounter}");
                     counted = true;
@@ -204,7 +221,8 @@ namespace CrazySolitaire {
             CurDragCard = null;
         }
 
-        private void FrmGame_FormClosing(object sender, FormClosingEventArgs e) {
+        private void FrmGame_FormClosing(object sender, FormClosingEventArgs e)
+        {
             Game.TitleForm.Close();
         }
         private void OnCoinsChanged(int coins)
@@ -217,6 +235,24 @@ namespace CrazySolitaire {
             {
                 lblCoinCount.Text = $"Coins: {coins}";
             }
+        }
+
+        private void InvButton_MouseHover(object sender, EventArgs e)
+        {
+            InvButton.BackColor = Color.Red;
+        }
+
+        private void InvButton_MouseLeave(object sender, EventArgs e)
+        {
+            InvButton.BackColor = Color.DeepPink;
+        }
+
+        private void InvButton_Click(object sender, EventArgs e)
+        {
+            //open inventory form
+            InventoryFrm inventoryFrm = new InventoryFrm();
+            inventoryFrm.Show();
+
         }
     }
 }
