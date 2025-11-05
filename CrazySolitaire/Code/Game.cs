@@ -53,7 +53,9 @@ public static class Game {
     public static void AddCoins(int amount)
     {
         if (amount == 0) return;
-        Coins += amount > 0 ? amount * CoinMultiplier : amount;
+        // If DoubleCoins is active in the session, award twice as many coins
+        int multiplier = CoinMultiplier * (DoubleCoinsActive ? 2 : 1);
+        Coins += amount > 0 ? amount * multiplier : amount;
     }
 
     // the getter and setter for the owned uno reverse cards
@@ -66,6 +68,12 @@ public static class Game {
             Properties.Settings.Default.Save();
         }
     }
+
+    // number of purchased reveal uses (not persisted)
+    public static int RevealUses { get; set; } = 0;
+
+    // whether double-coins was purchased for this session
+    public static bool DoubleCoinsActive { get; set; } = false;
 
 
     // a boolean keeping track of whether or not the program should

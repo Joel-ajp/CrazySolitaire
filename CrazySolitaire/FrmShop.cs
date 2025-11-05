@@ -27,7 +27,9 @@ namespace CrazySolitaire.Code
         // items available in the shop
         public enum ShopItems
         {
-            UnoReverse
+            TalonShuffleCard,
+            RevealCard,
+            DoubleCoinsCard
         }
 
         // the costs of the shop items
@@ -41,9 +43,14 @@ namespace CrazySolitaire.Code
             // Ensure closing the shop via X exits the app (closes hidden title)
             this.FormClosing += FrmShop_FormClosing;
 
-            costs.Add(ShopItems.UnoReverse, 25);
+            costs.Add(ShopItems.TalonShuffleCard, 25);
+            costs.Add(ShopItems.RevealCard, 15);
+            costs.Add(ShopItems.DoubleCoinsCard, 50);
 
-            lblReverseCost.Text = costs[ShopItems.UnoReverse].ToString();
+            // set the visible cost labels for each purchase box
+            lblReverseCost.Text = costs[ShopItems.TalonShuffleCard].ToString();
+            RevealCost.Text = costs[ShopItems.RevealCard].ToString();
+            label9.Text = costs[ShopItems.DoubleCoinsCard].ToString();
 
             // store all of the light bulbs in an array so you can
             // itterate over them later. They're listed in counterclockwise
@@ -211,6 +218,10 @@ namespace CrazySolitaire.Code
             lblCoinCount.Text = $"Coins:{Game.Coins}";
             lblReverseCount.Text = $"{Game.UnoReverses}";
 
+            // wire up reveal and double counts
+            lblRevealCount.Text = $"{Game.RevealUses}";
+            lblDoubleCount.Text = Game.DoubleCoinsActive ? "1" : "0";
+
             Random rand = new();
             var colors = Enum.GetValues(typeof(UnoColor));
             var randomColor = (UnoColor)colors.GetValue(rand.Next(4));
@@ -253,12 +264,48 @@ namespace CrazySolitaire.Code
 
         private void ReversePurchase_Click(object sender, EventArgs e)
         {
-            bool bought = PurchaseItem(ShopItems.UnoReverse, PnlReversePurchaseBx, lblReversNoMoney);
+            bool bought = PurchaseItem(ShopItems.TalonShuffleCard, PnlReversePurchaseBx, lblReversNoMoney);
             // give them the card if it went through
             if (bought)
             {
                 Game.UnoReverses = Game.UnoReverses + 1;
                 lblReverseCount.Text = $"{Game.UnoReverses}";
+            }
+        }
+
+        private void RevealPurchase_Click(object sender, EventArgs e)
+        {
+            bool bought = PurchaseItem(ShopItems.RevealCard, panel1, RevealWarning);
+            if (bought)
+            {
+                // grant a reveal use (game code can consume this)
+                Game.RevealUses = Game.RevealUses + 1;
+                // update UI count
+                lblRevealCount.Text = $"{Game.RevealUses}";
+                // briefly flash the header to indicate success
+                RevealHeader.Text = "Reveal Purchased";
+                var reset = Task.Run(async delegate
+                {
+                    await Task.Delay(600);
+                    RevealHeader.Text = "Reveal Card";
+                });
+                reset.Wait();
+                reset.Dispose();
+            }
+        }
+
+        private void DoublePurchase_Click(object sender, EventArgs e)
+        {
+            bool bought = PurchaseItem(ShopItems.DoubleCoinsCard, panel3, label6);
+            if (bought)
+            {
+                // enable double coins for the remainder of the session
+                Game.DoubleCoinsActive = true;
+                // reflect active state in header and disable further purchases
+                label7.Text = "Double Coins (ACTIVE)";
+                panel3.Enabled = false;
+                // update UI count so player can see it's active
+                lblDoubleCount.Text = Game.DoubleCoinsActive ? "1" : "0";
             }
         }
 
@@ -329,6 +376,11 @@ namespace CrazySolitaire.Code
         }
 
         private void PnlReversePurchaseBx_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
