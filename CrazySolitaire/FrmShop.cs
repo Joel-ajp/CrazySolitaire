@@ -262,52 +262,52 @@ namespace CrazySolitaire.Code
             }
         }
 
-        private void ReversePurchase_Click(object sender, EventArgs e)
-        {
-            bool bought = PurchaseItem(ShopItems.TalonShuffleCard, PnlReversePurchaseBx, lblReversNoMoney);
-            // give them the card if it went through
-            if (bought)
-            {
-                Game.UnoReverses = Game.UnoReverses + 1;
-                lblReverseCount.Text = $"{Game.UnoReverses}";
-            }
-        }
+        //private void ReversePurchase_Click(object sender, EventArgs e)
+        //{
+        //    bool bought = PurchaseItem(ShopItems.TalonShuffleCard, PnlReversePurchaseBx, lblReversNoMoney);
+        //    // give them the card if it went through
+        //    if (bought)
+        //    {
+        //        Game.UnoReverses = Game.UnoReverses + 1;
+        //        lblReverseCount.Text = $"{Game.UnoReverses}";
+        //    }
+        //}
 
-        private void RevealPurchase_Click(object sender, EventArgs e)
-        {
-            bool bought = PurchaseItem(ShopItems.RevealCard, panel1, RevealWarning);
-            if (bought)
-            {
-                // grant a reveal use (game code can consume this)
-                Game.RevealUses = Game.RevealUses + 1;
-                // update UI count
-                lblRevealCount.Text = $"{Game.RevealUses}";
-                // briefly flash the header to indicate success
-                RevealHeader.Text = "Reveal Purchased";
-                var reset = Task.Run(async delegate
-                {
-                    await Task.Delay(600);
-                    RevealHeader.Text = "Reveal Card";
-                });
-                reset.Wait();
-                reset.Dispose();
-            }
-        }
+        //private void RevealPurchase_Click(object sender, EventArgs e)
+        //{
+        //    bool bought = PurchaseItem(ShopItems.RevealCard, panel1, RevealWarning);
+        //    if (bought)
+        //    {
+        //        // grant a reveal use (game code can consume this)
+        //        Game.RevealUses = Game.RevealUses + 1;
+        //        // update UI count
+        //        lblRevealCount.Text = $"{Game.RevealUses}";
+        //        // briefly flash the header to indicate success
+        //        RevealHeader.Text = "Reveal Purchased";
+        //        var reset = Task.Run(async delegate
+        //        {
+        //            await Task.Delay(600);
+        //            RevealHeader.Text = "Reveal Card";
+        //        });
+        //        reset.Wait();
+        //        reset.Dispose();
+        //    }
+        //}
 
-        private void DoublePurchase_Click(object sender, EventArgs e)
-        {
-            bool bought = PurchaseItem(ShopItems.DoubleCoinsCard, panel3, label6);
-            if (bought)
-            {
-                // enable double coins for the remainder of the session
-                Game.DoubleCoinsActive = true;
-                // reflect active state in header and disable further purchases
-                label7.Text = "Double Coins (ACTIVE)";
-                panel3.Enabled = false;
-                // update UI count so player can see it's active
-                lblDoubleCount.Text = Game.DoubleCoinsActive ? "1" : "0";
-            }
-        }
+        //private void DoublePurchase_Click(object sender, EventArgs e)
+        //{
+        //    bool bought = PurchaseItem(ShopItems.DoubleCoinsCard, panel3, label6);
+        //    if (bought)
+        //    {
+        //        // enable double coins for the remainder of the session
+        //        Game.DoubleCoinsActive = true;
+        //        // reflect active state in header and disable further purchases
+        //        label7.Text = "Double Coins (ACTIVE)";
+        //        panel3.Enabled = false;
+        //        // update UI count so player can see it's active
+        //        lblDoubleCount.Text = Game.DoubleCoinsActive ? "1" : "0";
+        //    }
+        //}
 
         private bool PurchaseItem(ShopItems item, Panel clickBox, Label noMoney)
         {
@@ -383,6 +383,69 @@ namespace CrazySolitaire.Code
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+
+        // Event handler: stays on UI thread
+        private async void RevealPurchase_Click(object sender, EventArgs e)
+        {
+            bool bought = await PurchaseItemAsync(ShopItems.RevealCard, panel1, RevealWarning);
+            if (bought)
+            {
+                Game.RevealUses++;
+                lblRevealCount.Text = $"{Game.RevealUses}";
+                RevealHeader.Text = "Reveal Purchased";
+                await Task.Delay(600); // still on UI thread
+                RevealHeader.Text = "Reveal Card";
+            }
+        }
+
+        // Make PurchaseItem async (no Task.Run or .Wait())
+        private async Task<bool> PurchaseItemAsync(ShopItems item, Panel clickBox, Label noMoney)
+        {
+            if (Game.Coins >= costs[item])
+            {
+                clickBox.BackColor = Color.Gold;
+                await Task.Delay(150);
+                clickBox.BackColor = Color.FromArgb(64, 0, 0);
+
+                Game.Coins -= costs[item];
+                lblCoinCount.Text = $"Coins:{Game.Coins}";
+                return true;
+            }
+            else
+            {
+                clickBox.BackColor = Color.Red;
+                noMoney.Show();
+                await Task.Delay(150);
+                clickBox.BackColor = Color.FromArgb(64, 0, 0);
+                await Task.Delay(1000);
+                noMoney.Hide();
+                return false;
+            }
+        }
+
+        // Update other handlers similarly:
+        private async void ReversePurchase_Click(object sender, EventArgs e)
+        {
+            bool bought = await PurchaseItemAsync(ShopItems.TalonShuffleCard, PnlReversePurchaseBx, lblReversNoMoney);
+            if (bought)
+            {
+                Game.UnoReverses++;
+                lblReverseCount.Text = $"{Game.UnoReverses}";
+            }
+        }
+
+        private async void DoublePurchase_Click(object sender, EventArgs e)
+        {
+            bool bought = await PurchaseItemAsync(ShopItems.DoubleCoinsCard, panel3, label6);
+            if (bought)
+            {
+                Game.DoubleCoinsActive = true;
+                label7.Text = "Double Coins (ACTIVE)";
+                panel3.Enabled = false;
+                lblDoubleCount.Text = Game.DoubleCoinsActive ? "1" : "0";
+            }
         }
     }
 }
