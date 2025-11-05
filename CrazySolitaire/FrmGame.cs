@@ -119,6 +119,7 @@ namespace CrazySolitaire {
 
                 //calculate score = number of cards in foundation - 5(minutes over 3) - 20(stock reload count) - (number of moves over 52)
                 Game.Score = 5200 - (minutesTaken * 5) - (Game.StockReloadCount*20) - Game.MoveCounter;
+                Game.Score = Game.Score < 0 ? 0 : Game.Score; //ensure score doesn't go negative
                 System.Diagnostics.Trace.WriteLine($"Final Score: {Game.Score} (Moves (over 52): {Game.MoveCounter}, Extra Minutes: {minutesTaken}, Times Stock has reloaded {Game.StockReloadCount})");
 
                 //close form and open high score form
