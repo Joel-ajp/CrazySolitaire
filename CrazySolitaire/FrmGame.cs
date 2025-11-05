@@ -1,4 +1,6 @@
 using CrazySolitaire.Properties;
+using System;
+using System.Diagnostics;
 
 namespace CrazySolitaire {
     public partial class FrmGame : Form
@@ -18,14 +20,18 @@ namespace CrazySolitaire {
                 return cp;
             }
         }
-
+        public static Stopwatch GameTime = new Stopwatch();
         public FrmGame()
         {
+            
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //start timer
+            GameTime.Start();
+
             Instance = this;
             Panel[] panTableauStacks = new Panel[7];
             for (int i = 0; i < 7; i++)
@@ -100,7 +106,24 @@ namespace CrazySolitaire {
 
         public static void GameState() {             
             if (Game.IsGameWon) {
-               FrmHighScore frmHighScore = new();
+                //stop timer
+               GameTime.Stop();
+               
+                //take note of elapsed time, convert to minutes in int
+                TimeSpan ts = GameTime.Elapsed;
+                int minutesTaken = (int)ts.TotalMinutes > 3 ? (int)ts.TotalMinutes - 3 : 0; //using 3 as the "target" time
+
+                //take note of number of moves over 52 (minimum number of moves)
+                Game.MoveCounter = Game.MoveCounter > 52 ? Game.MoveCounter - 52 : 0;
+
+
+                //calculate score = number of cards in foundation - 5(minutes over 3) - 20(stock reload count) - (number of moves over 52)
+                Game.Score = 5200 - (minutesTaken * 5) - (Game.StockReloadCount*20) - Game.MoveCounter;
+                Game.Score = Game.Score < 0 ? 0 : Game.Score; //ensure score doesn't go negative
+                System.Diagnostics.Trace.WriteLine($"Final Score: {Game.Score} (Moves (over 52): {Game.MoveCounter}, Extra Minutes: {minutesTaken}, Times Stock has reloaded {Game.StockReloadCount})");
+
+                //close form and open high score form
+                FrmHighScore frmHighScore = new();
                frmHighScore.Show();
                Instance.Hide();
             }

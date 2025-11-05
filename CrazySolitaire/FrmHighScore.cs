@@ -15,7 +15,7 @@ namespace CrazySolitaire
         public FrmHighScore()
         {
             InitializeComponent();
-            ScoreTextBox.Text = "67";
+            ScoreTextBox.Text = Game.Score.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
