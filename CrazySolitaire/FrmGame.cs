@@ -108,21 +108,23 @@ namespace CrazySolitaire {
             if (Game.IsGameWon) {
                 //stop timer
                GameTime.Stop();
+               
                 //take note of elapsed time, convert to minutes in int
                 TimeSpan ts = GameTime.Elapsed;
                 int minutesTaken = (int)ts.TotalMinutes > 3 ? (int)ts.TotalMinutes - 3 : 0; //using 3 as the "target" time
-                //take note of how many cards remian in tableau stacks
-                int cardsRemaining = 0;
 
-                for (int i = 0; i < Game.TableauStacks.Length; i++)
-                {
-                    cardsRemaining += Game.TableauStacks[i].CountCards();
-                }
-                //calculate score (cards remaining in tablaeus + moves + minutes taken over 3 minutes)
-                Game.Score = Game.MoveCounter + minutesTaken;
+                //take note of number of moves over 52 (minimum number of moves)
+                Game.MoveCounter = Game.MoveCounter > 52 ? Game.MoveCounter - 52 : 0;
+
+
+                //calculate score = number of cards in foundation - 5(minutes over 3) - 20(stock reload count) - (number of moves over 52)
+                Game.Score = 5200 - (minutesTaken * 5) - (Game.StockReloadCount*20) - Game.MoveCounter;
+                System.Diagnostics.Trace.WriteLine($"Final Score: {Game.Score} (Moves (over 52): {Game.MoveCounter}, Extra Minutes: {minutesTaken}, Times Stock has reloaded {Game.StockReloadCount})");
+
+                //close form and open high score form
                 FrmHighScore frmHighScore = new();
                frmHighScore.Show();
-               Instance.Close();
+               Instance.Hide();
             }
         }
 
