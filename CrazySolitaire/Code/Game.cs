@@ -77,7 +77,7 @@ public static class Game {
     public static int RevealUses { get; set; } = 0;
 
     // whether double-coins was purchased for this session
-    public static bool DoubleCoinsActive { get; set; } = false;
+    public static bool DoubleCoinsActive { get; set; } = false; 
 
 
     // a boolean keeping track of whether or not the program should
