@@ -5,7 +5,10 @@
     <Setting Name="Coins" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="UnoReverses" Type="System.Int32" Scope="User">
+    <Setting Name="TalonShuffles" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="RevealCards" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>

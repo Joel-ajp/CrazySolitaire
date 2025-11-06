@@ -38,12 +38,24 @@ namespace CrazySolitaire.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int UnoReverses {
+        public int TalonShuffles {
             get {
-                return ((int)(this["UnoReverses"]));
+                return ((int)(this["TalonShuffles"]));
             }
             set {
-                this["UnoReverses"] = value;
+                this["TalonShuffles"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int RevealCards {
+            get {
+                return ((int)(this["RevealCards"]));
+            }
+            set {
+                this["RevealCards"] = value;
             }
         }
     }
