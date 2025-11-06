@@ -59,6 +59,7 @@
             pbStock.TabIndex = 0;
             pbStock.TabStop = false;
             pbStock.Click += pbStock_Click;
+            pbStock.Resize += ResizeElement;
             // 
             // panTalon
             // 
@@ -66,6 +67,7 @@
             panTalon.Name = "panTalon";
             panTalon.Size = new Size(151, 109);
             panTalon.TabIndex = 1;
+            panTalon.Resize += ResizeElement;
             // 
             // panFoundationStack_Clubs
             // 
@@ -75,8 +77,9 @@
             panFoundationStack_Clubs.BorderStyle = BorderStyle.FixedSingle;
             panFoundationStack_Clubs.Location = new Point(427, 26);
             panFoundationStack_Clubs.Name = "panFoundationStack_Clubs";
-            panFoundationStack_Clubs.Size = new Size(85, 109);
+            panFoundationStack_Clubs.Size = new Size(75, 109);
             panFoundationStack_Clubs.TabIndex = 2;
+            panFoundationStack_Clubs.Resize += ResizeElement;
             // 
             // panFoundationStack_Hearts
             // 
@@ -87,6 +90,7 @@
             panFoundationStack_Hearts.Name = "panFoundationStack_Hearts";
             panFoundationStack_Hearts.Size = new Size(85, 109);
             panFoundationStack_Hearts.TabIndex = 3;
+            panFoundationStack_Hearts.Resize += ResizeElement;
             // 
             // panFoundationStack_Spades
             // 
@@ -97,6 +101,7 @@
             panFoundationStack_Spades.Name = "panFoundationStack_Spades";
             panFoundationStack_Spades.Size = new Size(85, 109);
             panFoundationStack_Spades.TabIndex = 3;
+            panFoundationStack_Spades.Resize += ResizeElement;
             // 
             // panFoundationStack_Diamonds
             // 
@@ -107,6 +112,7 @@
             panFoundationStack_Diamonds.Name = "panFoundationStack_Diamonds";
             panFoundationStack_Diamonds.Size = new Size(85, 109);
             panFoundationStack_Diamonds.TabIndex = 3;
+            panFoundationStack_Diamonds.Resize += ResizeElement;
             // 
             // panTableauStack_0
             // 
@@ -117,6 +123,7 @@
             panTableauStack_0.Name = "panTableauStack_0";
             panTableauStack_0.Size = new Size(86, 286);
             panTableauStack_0.TabIndex = 4;
+            panTableauStack_0.Resize += ResizeElement;
             // 
             // panTableauStack_1
             // 
@@ -126,6 +133,7 @@
             panTableauStack_1.Name = "panTableauStack_1";
             panTableauStack_1.Size = new Size(86, 286);
             panTableauStack_1.TabIndex = 5;
+            panTableauStack_1.Resize += ResizeElement;
             // 
             // panTableauStack_2
             // 
@@ -135,6 +143,7 @@
             panTableauStack_2.Name = "panTableauStack_2";
             panTableauStack_2.Size = new Size(86, 286);
             panTableauStack_2.TabIndex = 5;
+            panTableauStack_2.Resize += ResizeElement;
             // 
             // panTableauStack_3
             // 
@@ -144,6 +153,7 @@
             panTableauStack_3.Name = "panTableauStack_3";
             panTableauStack_3.Size = new Size(86, 286);
             panTableauStack_3.TabIndex = 5;
+            panTableauStack_3.Resize += ResizeElement;
             // 
             // panTableauStack_4
             // 
@@ -153,6 +163,7 @@
             panTableauStack_4.Name = "panTableauStack_4";
             panTableauStack_4.Size = new Size(86, 286);
             panTableauStack_4.TabIndex = 5;
+            panTableauStack_4.Resize += ResizeElement;
             // 
             // panTableauStack_5
             // 
@@ -162,6 +173,7 @@
             panTableauStack_5.Name = "panTableauStack_5";
             panTableauStack_5.Size = new Size(86, 286);
             panTableauStack_5.TabIndex = 5;
+            panTableauStack_5.Resize += ResizeElement;
             // 
             // panTableauStack_6
             // 
@@ -171,6 +183,7 @@
             panTableauStack_6.Name = "panTableauStack_6";
             panTableauStack_6.Size = new Size(86, 286);
             panTableauStack_6.TabIndex = 5;
+            panTableauStack_6.Resize += ResizeElement;
             // 
             // picBox_coin
             // 
@@ -216,6 +229,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 64, 0);
+            MinimumSize = new Size((int)(Screen.PrimaryScreen.WorkingArea.Width * 0.5), (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.7));
             ClientSize = new Size(976, 637);
             Controls.Add(InvButton);
             Controls.Add(lblCoinCount);

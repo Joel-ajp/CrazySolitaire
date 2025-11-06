@@ -258,5 +258,53 @@ namespace CrazySolitaire {
             inventoryFrm.Show();
 
         }
+
+        private void ResizeElement(object sender, EventArgs e)
+        {
+            String CtrlName = ((Control)sender).Name;
+
+            if (CtrlName.Equals("panTalon"))
+            {
+                ((Control)sender).Size = new Size((int)(this.Width * 0.152), (int)(this.Height * 0.161));
+                ((Control)sender).Location = new Point((int)(this.Width * 0.25), (int)(this.Height * 0.05));
+                System.Diagnostics.Debug.WriteLine($"Resized {CtrlName} to {((Control)sender).Size}, located at {((Control)sender).Location}");
+            }
+            else if (CtrlName.Contains("panTableauStack_"))
+            {
+                ((Control)sender).Size = new Size((int)(this.Width * 0.0866), (int)(this.Height * 0.426) );
+                ((Control)sender).Location = new Point((int)(this.Width * (0.05 + (0.12 * Convert.ToInt32(CtrlName.Split('_')[1])))), (int)(this.Height * 0.25));
+                System.Diagnostics.Debug.WriteLine($"Resized {CtrlName} to {((Control)sender).Size}, located at {((Control)sender).Location}");
+            }
+            else if ((CtrlName.Contains("panFoundationStack_")) || (CtrlName.Equals("pbStock")))            {
+                ((Control)sender).Size = new Size((int)(this.Width * 0.075), (int)(this.Height * 0.156));
+                ((Control)sender).Location = new Point((int)(this.Width * ControlResizingHelper(CtrlName)), (int)(this.Height * 0.05));
+                System.Diagnostics.Debug.WriteLine($"Resized {CtrlName} to {((Control)sender).Size}, located at {((Control)sender).Location}");
+            }
+
+            
+        }
+
+        //this is specifically to help dynamiaclly resize the foundation stacks; returns the x position multiplier thingy
+        //i am the best programmer on earth and thats why god chose me. this is divine intellect this is divine fucking intellect
+        private float ControlResizingHelper(String Ctrl_Name)
+        {
+            float new_x = 0.02F;
+           
+            switch (Ctrl_Name)
+            {
+                case("panFoundationStack_Diamonds"):
+                    return new_x;
+                case("panFoundationStack_Spades"):
+                    return new_x + (0.05f);
+                case("panFoundationStack_Hearts"):
+                    return new_x + (2*0.05f);
+                case("panFoundationStack_Clubs"):
+                    return new_x * +(3 * 0.05f);
+                case("pbStock"):
+                    return new_x + (4 * 0.05f);
+            }
+            return -1; //visual studio please stop yelling at me
+
+        }
     }
 }
