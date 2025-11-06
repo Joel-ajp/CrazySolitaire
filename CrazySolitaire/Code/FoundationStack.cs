@@ -72,8 +72,7 @@ public class FoundationStack : IFindMoveableCards, IDropTarget, IDragFrom {
         }
 
         // increment how many moves the player has made
-        Game.MoveCounter++;
-        System.Diagnostics.Debug.WriteLine($"Moves: {Game.MoveCounter}");
+        Game.RegisterMove();
         FrmGame.GameState();
     }
 
@@ -115,5 +114,3 @@ public class FoundationStack : IFindMoveableCards, IDropTarget, IDragFrom {
         Dropped(card);
     }
 }
-
-//testing testing
