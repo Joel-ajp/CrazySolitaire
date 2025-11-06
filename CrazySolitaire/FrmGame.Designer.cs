@@ -229,7 +229,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 64, 0);
-            MinimumSize = new Size((int)(Screen.PrimaryScreen.WorkingArea.Width * 0.5), (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.7));
+            MinimumSize = new Size(992,670);
             ClientSize = new Size(976, 637);
             Controls.Add(InvButton);
             Controls.Add(lblCoinCount);
