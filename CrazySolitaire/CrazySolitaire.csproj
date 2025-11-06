@@ -6,6 +6,10 @@
     <Nullable>disable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+
+	  <ApplicationVisualStyle>true</ApplicationVisualStyle>
+	  <ApplicationUseCompatibleTextRendering>false</ApplicationUseCompatibleTextRendering>
+	  <ApplicationHighDpiMode>DpiUnaware</ApplicationHighDpiMode>
   </PropertyGroup>
 
   <ItemGroup>

@@ -196,6 +196,7 @@
             // 
             // FrmGame
             // 
+            //Size = new Size((int)(Screen.PrimaryScreen.WorkingArea.Width * 0.), (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.8));
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 64, 0);

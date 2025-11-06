@@ -27,12 +27,16 @@ namespace CrazySolitaire {
         {
 
             InitializeComponent();
+
+            //set size to ratio of screen size
+            //this.Size = new Size((int)(Screen.PrimaryScreen.WorkingArea.Width * 0.6), (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.8));
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //start timer
             GameTime.Start();
+
 
             Instance = this;
             Panel[] panTableauStacks = new Panel[7];
