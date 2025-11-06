@@ -116,6 +116,7 @@
             Controls.Add(TitleBox);
             Name = "FrmTitle";
             StartPosition = FormStartPosition.CenterScreen;
+            FormClosing += FrmTitle_FormClosing;
             Load += FrmTitle_Load;
             ((System.ComponentModel.ISupportInitialize)TitleBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)TextPic).EndInit();

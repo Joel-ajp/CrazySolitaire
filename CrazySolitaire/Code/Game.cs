@@ -32,7 +32,8 @@ public static class Game {
     public static int MoveCounter { get; set; }
 
     // a boolean property that returns true if the game is won, tracks how many cards are in each foundation stack
-    public static bool IsGameWon => FoundationStacks.Values.All(fs => fs.Cards.Count == 13);
+    public static bool IsGameWon => FoundationStacks.Values.All(fs => fs.Cards.Count == 13);  
+    
     //the players current score
     public static int Score { get; set; }
     // Raised whenever Coins changes

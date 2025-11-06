@@ -61,5 +61,10 @@ namespace CrazySolitaire {
             frmShop.Show();
             Hide();
         }
+
+        private void FrmTitle_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
