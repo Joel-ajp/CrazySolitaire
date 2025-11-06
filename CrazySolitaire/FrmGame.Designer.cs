@@ -160,9 +160,10 @@
             // 
             // picBox_coin
             // 
+            picBox_coin.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             picBox_coin.BackgroundImage = Properties.Resources.coin;
             picBox_coin.BackgroundImageLayout = ImageLayout.Stretch;
-            picBox_coin.Location = new Point(761, 611);
+            picBox_coin.Location = new Point(768, 588);
             picBox_coin.Name = "picBox_coin";
             picBox_coin.Size = new Size(40, 40);
             picBox_coin.TabIndex = 6;
@@ -170,9 +171,10 @@
             // 
             // lblCoinCount
             // 
+            lblCoinCount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lblCoinCount.AutoSize = true;
             lblCoinCount.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold);
-            lblCoinCount.Location = new Point(807, 611);
+            lblCoinCount.Location = new Point(814, 588);
             lblCoinCount.Name = "lblCoinCount";
             lblCoinCount.Size = new Size(107, 40);
             lblCoinCount.TabIndex = 7;
@@ -180,10 +182,11 @@
             // 
             // InvButton
             // 
+            InvButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             InvButton.BackColor = Color.DeepPink;
             InvButton.Font = new Font("Script MT Bold", 18F);
             InvButton.ForeColor = Color.Black;
-            InvButton.Location = new Point(32, 608);
+            InvButton.Location = new Point(30, 587);
             InvButton.Margin = new Padding(2);
             InvButton.Name = "InvButton";
             InvButton.Size = new Size(189, 39);
@@ -196,7 +199,6 @@
             // 
             // FrmGame
             // 
-            //Size = new Size((int)(Screen.PrimaryScreen.WorkingArea.Width * 0.), (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.8));
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 64, 0);
