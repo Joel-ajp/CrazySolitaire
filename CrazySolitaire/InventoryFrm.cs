@@ -13,7 +13,7 @@ namespace CrazySolitaire
 {
     public partial class InventoryFrm : Form
     {
-        public bool InvEmpty = (Game.UnoReverses <= 0 && Game.RevealUses <= 0 && !Game.DoubleCoinsActive);
+        public bool InvEmpty = (Game.TalonShuffles <= 0 && Game.RevealUses <= 0 && !Game.DoubleCoinsActive);
         
         //this is a very stupid design choice but idgaf
         public Dictionary<string, string> ItemDescriptions = new Dictionary<string, string>()
@@ -44,7 +44,7 @@ namespace CrazySolitaire
             }
             else
             {
-                InvItemSlot1.Visible = (Game.UnoReverses > 0);
+                InvItemSlot1.Visible = (Game.TalonShuffles > 0);
                 InvItemSlot2.Visible = (Game.RevealUses > 0);
                 InvItemSlot3.Visible = (Game.DoubleCoinsActive);
             }
@@ -79,6 +79,26 @@ namespace CrazySolitaire
                     InvItemDesc.Text = ItemDescriptions["Coin Multiplier"];
                     break;
             }
+        }
+
+        private void InvItemSlot_Click(object sender, EventArgs e)
+        {
+            if (InvEmpty) { return; } //nothing happens if inventory is empty
+            Control clickedSlot = sender as Control;
+            switch (clickedSlot.Name)
+            {
+                case "InvItemSlot1":    // Talon Shuffle
+                    Game.TalonShuffles--;
+                    Game.Deck.Shuffle();
+                    break;
+                case "InvItemSlot2":    // Reveal Card
+                    Game.RevealUses--;
+                    Game.RevealAllTableauFaceDown();
+                    break;
+            }
+            //refresh inventory
+            InvEmpty = (Game.TalonShuffles <= 0 && Game.RevealUses <= 0 && !Game.DoubleCoinsActive);
+            InventoryFrm_Load(sender, e);
         }
 
         //i know its called InvItemSlot1 but its the hover for all item slots

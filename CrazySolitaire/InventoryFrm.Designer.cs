@@ -94,6 +94,7 @@ namespace CrazySolitaire
             InvItemSlot2.TabIndex = 1;
             InvItemSlot2.TabStop = false;
             InvItemSlot2.Visible = false;
+            InvItemSlot2.Click += InvItemSlot_Click;
             InvItemSlot2.MouseLeave += InvItemSlot_MouseLeave;
             InvItemSlot2.MouseHover += InvItemSlot1_MouseHover;
             // 
@@ -111,6 +112,7 @@ namespace CrazySolitaire
             InvItemSlot1.TabIndex = 0;
             InvItemSlot1.TabStop = false;
             InvItemSlot1.Visible = false;
+            InvItemSlot1.Click += InvItemSlot_Click;
             InvItemSlot1.MouseLeave += InvItemSlot_MouseLeave;
             InvItemSlot1.MouseHover += InvItemSlot1_MouseHover;
             // 
