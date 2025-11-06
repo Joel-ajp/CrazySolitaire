@@ -55,7 +55,7 @@
             pbStock.BorderStyle = BorderStyle.Fixed3D;
             pbStock.Location = new Point(40, 27);
             pbStock.Name = "pbStock";
-            pbStock.Size = new Size(90, 126);
+            pbStock.Size = new Size(75, 109);
             pbStock.TabIndex = 0;
             pbStock.TabStop = false;
             pbStock.Click += pbStock_Click;
@@ -64,7 +64,7 @@
             // 
             panTalon.Location = new Point(160, 27);
             panTalon.Name = "panTalon";
-            panTalon.Size = new Size(166, 126);
+            panTalon.Size = new Size(151, 109);
             panTalon.TabIndex = 1;
             // 
             // panFoundationStack_Clubs
@@ -75,7 +75,7 @@
             panFoundationStack_Clubs.BorderStyle = BorderStyle.FixedSingle;
             panFoundationStack_Clubs.Location = new Point(427, 26);
             panFoundationStack_Clubs.Name = "panFoundationStack_Clubs";
-            panFoundationStack_Clubs.Size = new Size(100, 126);
+            panFoundationStack_Clubs.Size = new Size(85, 109);
             panFoundationStack_Clubs.TabIndex = 2;
             // 
             // panFoundationStack_Hearts
@@ -85,7 +85,7 @@
             panFoundationStack_Hearts.BorderStyle = BorderStyle.FixedSingle;
             panFoundationStack_Hearts.Location = new Point(556, 27);
             panFoundationStack_Hearts.Name = "panFoundationStack_Hearts";
-            panFoundationStack_Hearts.Size = new Size(100, 126);
+            panFoundationStack_Hearts.Size = new Size(85, 109);
             panFoundationStack_Hearts.TabIndex = 3;
             // 
             // panFoundationStack_Spades
@@ -95,7 +95,7 @@
             panFoundationStack_Spades.BorderStyle = BorderStyle.FixedSingle;
             panFoundationStack_Spades.Location = new Point(685, 27);
             panFoundationStack_Spades.Name = "panFoundationStack_Spades";
-            panFoundationStack_Spades.Size = new Size(100, 126);
+            panFoundationStack_Spades.Size = new Size(85, 109);
             panFoundationStack_Spades.TabIndex = 3;
             // 
             // panFoundationStack_Diamonds
@@ -105,57 +105,71 @@
             panFoundationStack_Diamonds.BorderStyle = BorderStyle.FixedSingle;
             panFoundationStack_Diamonds.Location = new Point(814, 27);
             panFoundationStack_Diamonds.Name = "panFoundationStack_Diamonds";
-            panFoundationStack_Diamonds.Size = new Size(100, 126);
+            panFoundationStack_Diamonds.Size = new Size(85, 109);
             panFoundationStack_Diamonds.TabIndex = 3;
             // 
             // panTableauStack_0
             // 
             panTableauStack_0.AllowDrop = true;
-            panTableauStack_0.Location = new Point(40, 254);
+            panTableauStack_0.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panTableauStack_0.AutoSize = true;
+            panTableauStack_0.Location = new Point(39, 172);
             panTableauStack_0.Name = "panTableauStack_0";
-            panTableauStack_0.Size = new Size(101, 306);
+            panTableauStack_0.Size = new Size(86, 286);
             panTableauStack_0.TabIndex = 4;
             // 
             // panTableauStack_1
             // 
-            panTableauStack_1.Location = new Point(169, 254);
+            panTableauStack_1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panTableauStack_1.AutoSize = true;
+            panTableauStack_1.Location = new Point(168, 172);
             panTableauStack_1.Name = "panTableauStack_1";
-            panTableauStack_1.Size = new Size(101, 306);
+            panTableauStack_1.Size = new Size(86, 286);
             panTableauStack_1.TabIndex = 5;
             // 
             // panTableauStack_2
             // 
-            panTableauStack_2.Location = new Point(298, 254);
+            panTableauStack_2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panTableauStack_2.AutoSize = true;
+            panTableauStack_2.Location = new Point(297, 172);
             panTableauStack_2.Name = "panTableauStack_2";
-            panTableauStack_2.Size = new Size(101, 306);
+            panTableauStack_2.Size = new Size(86, 286);
             panTableauStack_2.TabIndex = 5;
             // 
             // panTableauStack_3
             // 
-            panTableauStack_3.Location = new Point(427, 254);
+            panTableauStack_3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panTableauStack_3.AutoSize = true;
+            panTableauStack_3.Location = new Point(426, 172);
             panTableauStack_3.Name = "panTableauStack_3";
-            panTableauStack_3.Size = new Size(101, 306);
+            panTableauStack_3.Size = new Size(86, 286);
             panTableauStack_3.TabIndex = 5;
             // 
             // panTableauStack_4
             // 
-            panTableauStack_4.Location = new Point(556, 254);
+            panTableauStack_4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panTableauStack_4.AutoSize = true;
+            panTableauStack_4.Location = new Point(555, 172);
             panTableauStack_4.Name = "panTableauStack_4";
-            panTableauStack_4.Size = new Size(101, 306);
+            panTableauStack_4.Size = new Size(86, 286);
             panTableauStack_4.TabIndex = 5;
             // 
             // panTableauStack_5
             // 
-            panTableauStack_5.Location = new Point(685, 254);
+            panTableauStack_5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panTableauStack_5.AutoSize = true;
+            panTableauStack_5.Location = new Point(684, 172);
             panTableauStack_5.Name = "panTableauStack_5";
-            panTableauStack_5.Size = new Size(101, 306);
+            panTableauStack_5.Size = new Size(86, 286);
             panTableauStack_5.TabIndex = 5;
             // 
             // panTableauStack_6
             // 
-            panTableauStack_6.Location = new Point(814, 254);
+            panTableauStack_6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panTableauStack_6.AutoSize = true;
+            panTableauStack_6.Location = new Point(813, 172);
             panTableauStack_6.Name = "panTableauStack_6";
-            panTableauStack_6.Size = new Size(101, 306);
+            panTableauStack_6.Size = new Size(86, 286);
             panTableauStack_6.TabIndex = 5;
             // 
             // picBox_coin

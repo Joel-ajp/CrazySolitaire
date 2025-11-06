@@ -48,8 +48,8 @@ public class Card {
     private void SetupPicBox() {
         // sets up fhe card's visual settings
         PicBox = new() {
-            Width = (int)(Form.ActiveForm.Width * 0.0896),
-            Height = (int)(Form.ActiveForm.Height*0.187),
+            Width = (int)(Form.ActiveForm.Width * 0.075),
+            Height = (int)(Form.ActiveForm.Height*0.156),
             BackgroundImageLayout = ImageLayout.Stretch,
             BorderStyle = BorderStyle.FixedSingle,
             BackgroundImage = PicImg
