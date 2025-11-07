@@ -25,13 +25,13 @@ public class Card {
     private Point dragOffset;
     // the XY coordinate of where the card was on screen prior to being
     // draged relative to the container it was in
-    private Point relLocBeforeDrag;
+    public Point relLocBeforeDrag { get; set; }
     // the container the card was in prior to being dragged
-    private Control conBeforeDrag;
+    public Control conBeforeDrag { get; set; }
     // the container that was last hovered over while dragging the card
     // which the player would be trying to drop the card on if they
     // release the mouse button during this frame
-    private IDropTarget lastDropTarget;
+    public IDropTarget lastDropTarget { get; set; }
 
     // simple constructor
     public Card(CardType type, Suit suit) {

@@ -9,7 +9,7 @@ namespace CrazySolitaire.Code
     // this represents a single move that the player
     // has made, and contains information about
     // what that moves was
-    internal class Move{
+    public class Move{
         // the card that was moved
         public Card card { get; set; }
 
