@@ -12,7 +12,7 @@ namespace CrazySolitaire.Code
     // when the undo button is hit
     public class MovesStack{
         // the stack where the moves are stored
-        public Stack<Move> stack { get; private set; }
+        public Stack<Move> stack { get; set; }
 
         public MovesStack(){
             stack = new Stack<Move>();
@@ -59,7 +59,7 @@ namespace CrazySolitaire.Code
 
                         // put all the cards from CurDeckState back in the Deck;
                         while (true){
-                            if (Game.Deck.IsEmpty()){
+                            if (curDeckState.Count == 0){
                                 break;
                             }else{
                                 Card nextCard = curDeckState.Dequeue();

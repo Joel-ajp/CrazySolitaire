@@ -89,6 +89,9 @@ namespace CrazySolitaire {
                             _ => pbStock.BackgroundImage
                         };
                     }
+
+                    Code.Move move = new Code.Move(Game.Talon);
+                    Game.MovesStack.Log(move);
                 }
             }
             else
@@ -103,6 +106,8 @@ namespace CrazySolitaire {
                         c.PicBox.BringToFront();
                     }
                 }
+                Code.Move move = new Code.Move(Game.Deck);
+                Game.MovesStack.Log(move);
                 if (Game.Deck.IsEmpty())
                 {
                     pbStock.BackgroundImage = null;

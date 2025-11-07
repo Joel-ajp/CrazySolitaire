@@ -110,6 +110,7 @@ public static class Game {
         MoveCounter = 0;
         StockReloadCount = 0;
         SuppressMoveCounting = false;
+        MovesStack = new MovesStack();
     }
 
     // Configure difficulty and corresponding stock reload limits
