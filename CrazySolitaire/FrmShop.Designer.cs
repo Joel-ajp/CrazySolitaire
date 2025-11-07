@@ -1048,9 +1048,9 @@
             lblReverseCard.ForeColor = Color.White;
             lblReverseCard.Location = new Point(97, 0);
             lblReverseCard.Name = "lblReverseCard";
-            lblReverseCard.Size = new Size(309, 45);
+            lblReverseCard.Size = new Size(295, 45);
             lblReverseCard.TabIndex = 74;
-            lblReverseCard.Text = "Talson Shuffle Card";
+            lblReverseCard.Text = "Talon Shuffle Card";
             lblReverseCard.Click += ReversePurchase_Click;
             // 
             // lblReversNoMoney

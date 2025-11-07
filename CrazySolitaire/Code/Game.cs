@@ -53,6 +53,42 @@ public static class Game {
         }
     }
 
+    // number of purchased reveal uses (not persisted)
+    public static int RevealUses { 
+        get => Properties.Settings.Default.RevealCards;
+        set
+        {
+            if (Properties.Settings.Default.RevealCards == value) return;
+            Properties.Settings.Default.RevealCards = value;
+            Properties.Settings.Default.Save();
+        } 
+    }
+
+    // whether double-coins was purchased for this session
+    public static bool DoubleCoinsActive { get; set; } = false;
+
+    // the getter and setter for the owned uno reverse cards
+    public static int TalonShuffles
+    {
+        get => Properties.Settings.Default.TalonShuffles;
+        set
+        {
+            if (Properties.Settings.Default.TalonShuffles == value) return;
+            Properties.Settings.Default.TalonShuffles = value;
+            Properties.Settings.Default.Save();
+        }
+    }
+
+
+    // a boolean keeping track of whether or not the program should
+    // be temporarily supressing move counting
+    public static bool SuppressMoveCounting { get; set; }
+
+    // Tracks temporary reveal state (cards flipped face-up due to reveal)
+    private static readonly List<Card> _tempRevealed = new();
+    public static bool TempRevealActive { get; private set; } = false;
+
+    
     // Helper: award coins applying the current difficulty multiplier.
     // Positive amounts are multiplied; negative amounts (deductions) are not.
     public static void AddCoins(int amount)
@@ -63,27 +99,7 @@ public static class Game {
         Coins += amount > 0 ? amount * multiplier : amount;
     }
 
-    // the getter and setter for the owned uno reverse cards
-    public static int UnoReverses
-    {
-        get => Properties.Settings.Default.UnoReverses;
-        set {
-            if (Properties.Settings.Default.UnoReverses == value) return;
-            Properties.Settings.Default.UnoReverses = value;
-            Properties.Settings.Default.Save();
-        }
-    }
 
-    // number of purchased reveal uses (not persisted)
-    public static int RevealUses { get; set; } = 0;
-
-    // whether double-coins was purchased for this session
-    public static bool DoubleCoinsActive { get; set; } = false; 
-
-
-    // a boolean keeping track of whether or not the program should
-    // be temporarily supressing move counting
-    public static bool SuppressMoveCounting { get; set; }
 
     // a simple constructor, setting both MoveCounter and StockReloadCount
     // to zero, and setting SuppressMoveCounting to false
@@ -121,6 +137,10 @@ public static class Game {
         // reset counters for a fresh game
         MoveCounter = 0;
         StockReloadCount = 0;
+        TempRevealActive = false;
+        _tempRevealed.Clear();
+
+        //Properties.Settings.Default.Reset();
 
         // create talon
         Talon = new(panTalon);
@@ -201,6 +221,41 @@ public static class Game {
             }
         }
         return null;
+    }
+
+    // Centralized move registration: increments move counter and restores any temporary reveals
+    public static void RegisterMove() {
+        MoveCounter++;
+        System.Diagnostics.Debug.WriteLine($"Moves: {MoveCounter}");
+        // If a temporary reveal is active, restore it now
+        RestoreTempReveal();
+    }
+
+    // Flip all currently face-down cards in the tableau stacks and mark them for restoration
+    public static void RevealAllTableauFaceDown() {
+        if (TempRevealActive) return;
+        _tempRevealed.Clear();
+        foreach (var tableau in TableauStacks) {
+            foreach (var card in tableau.Cards) {
+                if (!card.FaceUp) {
+                    _tempRevealed.Add(card);
+                    card.FlipOver();
+                }
+            }
+        }
+        TempRevealActive = _tempRevealed.Count > 0;
+    }
+
+    // Restore any cards flipped by a temporary reveal
+    public static void RestoreTempReveal() {
+        if (!TempRevealActive) return;
+        foreach (var card in _tempRevealed) {
+            if (card is not null && card.FaceUp) {
+                card.FlipOver();
+            }
+        }
+        _tempRevealed.Clear();
+        TempRevealActive = false;
     }
 
     // a helper function to tell all potential drop locations
@@ -298,5 +353,3 @@ public static class Game {
         tmr.Start();
     }
 }
-
-//testing testing testing

@@ -216,7 +216,7 @@ namespace CrazySolitaire.Code
         private void FrmShop_Load(object sender, EventArgs e)
         {
             lblCoinCount.Text = $"Coins:{Game.Coins}";
-            lblReverseCount.Text = $"{Game.UnoReverses}";
+            lblReverseCount.Text = $"{Game.TalonShuffles}";
 
             // wire up reveal and double counts
             lblRevealCount.Text = $"{Game.RevealUses}";
@@ -262,104 +262,6 @@ namespace CrazySolitaire.Code
             }
         }
 
-        //private void ReversePurchase_Click(object sender, EventArgs e)
-        //{
-        //    bool bought = PurchaseItem(ShopItems.TalonShuffleCard, PnlReversePurchaseBx, lblReversNoMoney);
-        //    // give them the card if it went through
-        //    if (bought)
-        //    {
-        //        Game.UnoReverses = Game.UnoReverses + 1;
-        //        lblReverseCount.Text = $"{Game.UnoReverses}";
-        //    }
-        //}
-
-        //private void RevealPurchase_Click(object sender, EventArgs e)
-        //{
-        //    bool bought = PurchaseItem(ShopItems.RevealCard, panel1, RevealWarning);
-        //    if (bought)
-        //    {
-        //        // grant a reveal use (game code can consume this)
-        //        Game.RevealUses = Game.RevealUses + 1;
-        //        // update UI count
-        //        lblRevealCount.Text = $"{Game.RevealUses}";
-        //        // briefly flash the header to indicate success
-        //        RevealHeader.Text = "Reveal Purchased";
-        //        var reset = Task.Run(async delegate
-        //        {
-        //            await Task.Delay(600);
-        //            RevealHeader.Text = "Reveal Card";
-        //        });
-        //        reset.Wait();
-        //        reset.Dispose();
-        //    }
-        //}
-
-        //private void DoublePurchase_Click(object sender, EventArgs e)
-        //{
-        //    bool bought = PurchaseItem(ShopItems.DoubleCoinsCard, panel3, label6);
-        //    if (bought)
-        //    {
-        //        // enable double coins for the remainder of the session
-        //        Game.DoubleCoinsActive = true;
-        //        // reflect active state in header and disable further purchases
-        //        label7.Text = "Double Coins (ACTIVE)";
-        //        panel3.Enabled = false;
-        //        // update UI count so player can see it's active
-        //        lblDoubleCount.Text = Game.DoubleCoinsActive ? "1" : "0";
-        //    }
-        //}
-
-        private bool PurchaseItem(ShopItems item, Panel clickBox, Label noMoney)
-        {
-            // if the player has enough coins for the item
-            if (Game.Coins >= costs[item])
-            {
-                // make the box flash gold
-                clickBox.BackColor = Color.Gold;
-                var resetColor = Task.Run(async delegate
-                {
-                    await Task.Delay(150);
-                    clickBox.BackColor = Color.FromArgb(64, 0, 0);
-                });
-                resetColor.Wait();
-                resetColor.Dispose();
-
-                // subtract coins
-                Game.Coins = Game.Coins - costs[item];
-
-                // update shop screen coin tally
-                lblCoinCount.Text = $"Coins:{Game.Coins}";
-
-                // return that they got the thing
-                return true;
-
-                // if they don't have enough coins for the item
-            }
-            else
-            {
-                // flash the box flash red and make the not enough
-                // coins message appear
-                clickBox.BackColor = Color.Red;
-                noMoney.Show();
-                var resetColor = Task.Run(async delegate
-                {
-                    await Task.Delay(150);
-                    clickBox.BackColor = Color.FromArgb(64, 0, 0);
-                });
-                resetColor.Wait();
-                resetColor.Dispose();
-                var hideNoMoneyDelay = Task.Run(async delegate
-                {
-                    await Task.Delay(1000);
-                });
-                hideNoMoneyDelay.Wait();
-                noMoney.Hide();
-                hideNoMoneyDelay.Dispose();
-
-                // return that they didn't get the thing
-                return false;
-            }
-        }
 
         private void FrmShop_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -431,8 +333,8 @@ namespace CrazySolitaire.Code
             bool bought = await PurchaseItemAsync(ShopItems.TalonShuffleCard, PnlReversePurchaseBx, lblReversNoMoney);
             if (bought)
             {
-                Game.UnoReverses++;
-                lblReverseCount.Text = $"{Game.UnoReverses}";
+                Game.TalonShuffles++;
+                lblReverseCount.Text = $"{Game.TalonShuffles}";
             }
         }
 
