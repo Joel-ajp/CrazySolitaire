@@ -44,6 +44,7 @@
             picBox_coin = new PictureBox();
             lblCoinCount = new Label();
             InvButton = new Button();
+            BtnUndo = new Button();
             ((System.ComponentModel.ISupportInitialize)pbStock).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBox_coin).BeginInit();
             SuspendLayout();
@@ -211,12 +212,25 @@
             InvButton.MouseLeave += InvButton_MouseLeave;
             InvButton.MouseHover += InvButton_MouseHover;
             // 
+            // BtnUndo
+            // 
+            BtnUndo.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BtnUndo.ForeColor = Color.Black;
+            BtnUndo.Location = new Point(925, 12);
+            BtnUndo.Name = "BtnUndo";
+            BtnUndo.Size = new Size(39, 40);
+            BtnUndo.TabIndex = 9;
+            BtnUndo.Text = "↩️";
+            BtnUndo.UseVisualStyleBackColor = true;
+            BtnUndo.Click += Btn_Undo;
+            // 
             // FrmGame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 64, 0);
             ClientSize = new Size(976, 637);
+            Controls.Add(BtnUndo);
             Controls.Add(InvButton);
             Controls.Add(lblCoinCount);
             Controls.Add(picBox_coin);
@@ -263,5 +277,6 @@
         private PictureBox picBox_coin;
         private Label lblCoinCount;
         private Button InvButton;
+        private Button BtnUndo;
     }
 }

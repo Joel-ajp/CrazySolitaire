@@ -257,5 +257,10 @@ namespace CrazySolitaire {
             inventoryFrm.Show();
 
         }
+
+        private void Btn_Undo(object sender, EventArgs e)
+        {
+            Game.MovesStack.Undo();
+        }
     }
 }
