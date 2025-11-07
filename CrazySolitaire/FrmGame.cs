@@ -299,7 +299,7 @@ namespace CrazySolitaire {
                 case("panFoundationStack_Hearts"):
                     return new_x + (2*0.05f);
                 case("panFoundationStack_Clubs"):
-                    return new_x * +(3 * 0.05f);
+                    return new_x + (3 * 0.05f);
                 case("pbStock"):
                     return new_x + (4 * 0.05f);
             }

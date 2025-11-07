@@ -222,13 +222,13 @@ namespace CrazySolitaire.Code
             lblRevealCount.Text = $"{Game.RevealUses}";
             lblDoubleCount.Text = Game.DoubleCoinsActive ? "1" : "0";
 
-            Random rand = new();
-            var colors = Enum.GetValues(typeof(UnoColor));
-            var randomColor = (UnoColor)colors.GetValue(rand.Next(4));
-            PnlReverseCard.BackgroundImage = Resources.ResourceManager.GetObject($"uno_reverse_{randomColor.ToString().ToLower()}") as Bitmap;
+            // Random rand = new();
+            // var colors = Enum.GetValues(typeof(UnoColor));
+            // var randomColor = (UnoColor)colors.GetValue(rand.Next(4));
+            // PnlReverseCard.BackgroundImage = Resources.ResourceManager.GetObject($"uno_reverse_{randomColor.ToString().ToLower()}") as Bitmap;
 
-            randomColor = (UnoColor)colors.GetValue(rand.Next(4));
-            pnlReverseCountIcon.BackgroundImage = Resources.ResourceManager.GetObject($"uno_reverse_{randomColor.ToString().ToLower()}") as Bitmap;
+            // randomColor = (UnoColor)colors.GetValue(rand.Next(4));
+            // pnlReverseCountIcon.BackgroundImage = Resources.ResourceManager.GetObject($"uno_reverse_{randomColor.ToString().ToLower()}") as Bitmap;
         }
 
         // this fires every time bulbTimer fires
