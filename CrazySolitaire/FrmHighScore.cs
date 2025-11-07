@@ -24,5 +24,10 @@ namespace CrazySolitaire
             frmTitle.Show();
             Hide();
         }
+
+        private void FrmHighScore_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
