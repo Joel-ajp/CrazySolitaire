@@ -214,7 +214,7 @@ namespace CrazySolitaire {
                 Game.SuppressMoveCounting = false;
                 if (!counted)
                 {
-                    Game.RegisterMove();
+                    Game.RegisterMove(card, CardDraggedFrom, target);
                     counted = true;
                 }
             }

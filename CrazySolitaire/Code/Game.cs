@@ -1,4 +1,5 @@
-﻿using Timer = System.Windows.Forms.Timer;
+﻿using CrazySolitaire.Code;
+using Timer = System.Windows.Forms.Timer;
 
 namespace CrazySolitaire;
 
@@ -30,6 +31,9 @@ public static class Game {
 
     //keep count the numebr of moves in game
     public static int MoveCounter { get; set; }
+
+    // the stack with the old moves for undo purposes
+    public static MovesStack MovesStack { get; set; }
 
     // a boolean property that returns true if the game is won, tracks how many cards are in each foundation stack
     public static bool IsGameWon => FoundationStacks.Values.All(fs => fs.Cards.Count == 13);
@@ -223,11 +227,18 @@ public static class Game {
     }
 
     // Centralized move registration: increments move counter and restores any temporary reveals
-    public static void RegisterMove() {
+    public static void RegisterMove(Card c, IDragFrom f, IDropTarget t) {
         MoveCounter++;
         System.Diagnostics.Debug.WriteLine($"Moves: {MoveCounter}");
         // If a temporary reveal is active, restore it now
         RestoreTempReveal();
+
+        // log the move with the MoveStack
+        Move move;
+        if (f is Deck d) { move = new Move(d); }
+        else if (f is Talon ta) { move = new Move(ta); }
+        else { move = new Move(c, f, t); }
+        MovesStack.Log(move);
     }
 
     // Flip all currently face-down cards in the tableau stacks and mark them for restoration

@@ -89,7 +89,7 @@ public class TableauStack : IFindMoveableCards, IDropTarget, IDragFrom {
         c.PicBox.BringToFront();
         // increment the count of how many moves the player has made
         if (!Game.SuppressMoveCounting) {
-            Game.RegisterMove();
+            Game.RegisterMove(c, FrmGame.CardDraggedFrom, this);
         }
     }
 

@@ -72,7 +72,7 @@ public class FoundationStack : IFindMoveableCards, IDropTarget, IDragFrom {
         }
 
         // increment how many moves the player has made
-        Game.RegisterMove();
+        Game.RegisterMove(c, FrmGame.CardDraggedFrom, this);
         FrmGame.GameState();
     }
 
