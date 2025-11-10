@@ -28,6 +28,10 @@ namespace CrazySolitaire {
 
             InitializeComponent();
 
+            // Ensure form receives keyboard events even when a control has focus
+            this.KeyPreview = true;
+            this.KeyDown += FrmGame_KeyDown;
+
             //set size to ratio of screen size
             //this.Size = new Size((int)(Screen.PrimaryScreen.WorkingArea.Width * 0.6), (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.8));
         }
@@ -108,6 +112,47 @@ namespace CrazySolitaire {
                     pbStock.BackgroundImage = null;
                 }
             }
+        }
+
+        // Demo shortcut handler
+        private void FrmGame_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.C)
+            {
+                // Add exactly 100 coins (no multiplier).
+                Game.Coins += 100;
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.W)
+            {
+                // Force an instant win for demo purposes.
+                ForceWinDemo();
+                e.Handled = true;
+            }
+        }
+
+        // Mimics the scoring and transition performed by GameState when the game is won.
+        private void ForceWinDemo()
+        {
+            // stop timer
+            GameTime.Stop();
+
+            // compute minutes over target
+            TimeSpan ts = GameTime.Elapsed;
+            int minutesTaken = (int)ts.TotalMinutes > 3 ? (int)ts.TotalMinutes - 3 : 0; // target time is 3
+
+            // adjust move counter to represent amount over 52 baseline
+            Game.MoveCounter = Game.MoveCounter > 52 ? Game.MoveCounter - 52 : 0;
+
+            // calculate score
+            Game.Score = 5200 - (minutesTaken * 5) - (Game.StockReloadCount * 20) - Game.MoveCounter;
+            Game.Score = Game.Score < 0 ? 0 : Game.Score;
+            System.Diagnostics.Trace.WriteLine($"[Demo Win] Final Score: {Game.Score} (Moves (over 52): {Game.MoveCounter}, Extra Minutes: {minutesTaken}, Times Stock has reloaded {Game.StockReloadCount})");
+
+            // open high score form and hide the game
+            FrmHighScore frmHighScore = new();
+            frmHighScore.Show();
+            Instance.Hide();
         }
 
         public static void GameState()
